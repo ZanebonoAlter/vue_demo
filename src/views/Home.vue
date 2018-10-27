@@ -3,8 +3,8 @@
 		<el-col :span="24" class="header">
 			<el-col :span="10" class="logo" :class="collapsed?'logo-collapse-width':'logo-width'">
 				<!--{{collapsed?'':sysName}}-->
-				<img v-if="!collapsed" src="../assets/menu_logo_logo.png" alt="">
-				<img v-else src="../assets/menu_logo_logo2.png" alt="">
+				<!--<img v-if="!collapsed" src="../assets/menu_logo_logo.png" alt="">-->
+				<!--<img v-else src="../assets/menu_logo_logo2.png" alt="">-->
 			</el-col>
 			<el-col :span="10">
 				<div class="tools" @click.prevent="collapse">
@@ -13,10 +13,11 @@
 			</el-col>
 			<el-col :span="4" class="userinfo">
 				<el-dropdown trigger="hover">
-					<span class="el-dropdown-link userinfo-inner"><img src="../assets/user.png" />徐老师</span>
+					<span>分析系统</span>
+					<!--<span class="el-dropdown-link userinfo-inner"><img src="../assets/user.png" />{{name}}</span>-->
 					<el-dropdown-menu slot="dropdown">
-						<el-dropdown-item>我的消息</el-dropdown-item>
-						<el-dropdown-item>设置</el-dropdown-item>
+						<!--<el-dropdown-item>我的消息</el-dropdown-item>-->
+						<!--<el-dropdown-item>设置</el-dropdown-item>-->
 						<el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
 					</el-dropdown-menu>
 				</el-dropdown>
@@ -27,7 +28,8 @@
 				<!--导航菜单-->
 				<el-menu :default-active="$route.path" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose" @select="handleselect"
 					 unique-opened router v-show="!collapsed">
-					<template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
+					<!--&& $checkPermissions(item.permission)-->
+					<template v-for="(item,index) in $router.options.routes" v-if="!item.hidden ">
 						<el-submenu :index="index+''" v-if="!item.leaf">
 							<template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
 							<el-menu-item v-for="child in item.children" :index="child.path" :key="child.path" v-if="!child.hidden">{{child.name}}</el-menu-item>
@@ -41,7 +43,7 @@
 						<template v-if="!item.leaf">
 							<div class="el-submenu__title" style="padding-left: 20px;" @mouseover="showMenu(index,true)" @mouseout="showMenu(index,false)"><i :class="item.iconCls"></i></div>
 							<ul class="el-menu submenu" :class="'submenu-hook-'+index" @mouseover="showMenu(index,true)" @mouseout="showMenu(index,false)">
-								<li v-for="child in item.children" v-if="!child.hidden" :key="child.path" class="el-menu-item" style="padding-left: 40px;" :class="$route.path==child.path?'is-active':''" @click="$router.push(child.path)">{{child.name}}</li>
+								<li v-for="child in item.children" v-if="!child.hidden " :key="child.path" class="el-menu-item" style="padding-left: 40px;" :class="$route.path==child.path?'is-active':''" @click="$router.push(child.path)">{{child.name}}</li>
 							</ul>
 						</template>
 						<template v-else>
@@ -77,6 +79,7 @@
 	export default {
 		data() {
 			return {
+			    name:sessionStorage.getItem('admin'),
 				sysName:'VUEADMIN',
 				collapsed:false,
 				sysUserName: '',

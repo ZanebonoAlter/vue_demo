@@ -7,44 +7,51 @@
 					<el-input v-model="filters.name" placeholder="书名"></el-input>
 				</el-form-item>
 				<el-form-item>
-					<el-button type="primary">查询</el-button>
+					<el-button type="primary" @click="search">查询</el-button>
 				</el-form-item>
 				<el-form-item>
-					<el-button type="primary" @click="$router.push('/form')">新增</el-button>
+					<el-button type="primary" @click="$router.push('/form')" v-if="$checkPermissions('bookAdd')">新增</el-button>
 				</el-form-item>
 			</el-form>
 		</el-col>
 
 		<!--列表-->
 		<el-table :data="list" highlight-current-row @selection-change="selsChange" style="width: 100%;">
-			<el-table-column type="selection" width="55">
+			<el-table-column type="selection" width="55" >
 			</el-table-column>
-			<el-table-column prop="id" label="Id" width="80">
+			<el-table-column prop="bookId" label="Id" width="80">
 			</el-table-column>
-			<el-table-column prop="name" label="书名" sortable>
+			<el-table-column prop="bookName" label="书名" sortable>
 			</el-table-column>
-			<el-table-column prop="price" label="价格" width="150" sortable>
+			<el-table-column prop="bookPrice" label="价格" width="150" sortable>
 			</el-table-column>
-			<el-table-column prop="stock" label="库存" width="150" sortable>
+			<el-table-column prop="bookNumber" label="库存" width="150" sortable>
+			</el-table-column>
+			<el-table-column prop="bookState" label="状态" width="150" sortable>
+				<template slot-scope="scope">
+					<el-tag type="danger" v-if="scope.row.bookState==0">已删除</el-tag>
+					<el-tag type="success" v-if="scope.row.bookState==1">正常</el-tag>
+				</template>
 			</el-table-column>
 			<el-table-column label="图片" width="200" sortable>
 				<template slot-scope="scope">
-					<img :src="scope.row.pic" style="margin: 10px; height: 50%"/>
+					<img :src="scope.row.bookImg" style="margin: 10px; height: 50%"/>
 				</template>
 			</el-table-column>
-			<el-table-column label="操作" width="200">
+			<el-table-column label="操作" width="250">
 				<template slot-scope="scope">
-					<el-button type="primary" size="small" @click="$router.push('/detail')">查看</el-button>
-					<el-button size="small" @click="$router.push('/edit')">编辑</el-button>
-					<el-button type="danger" size="small" @click="">删除</el-button>
+					<el-button type="primary" size="small" @click="$router.push({path:'/detail',query:{bId:scope.row.bookId}})">查看</el-button>
+					<el-button size="small" @click="$router.push({path:'/edit',query:{bId:scope.row.bookId}})" v-if="$checkPermissions('bookEdit')">编辑</el-button>
+					<el-button type="danger" size="small" @click="updateState(scope.row.bookId,0)" v-if="scope.row.bookState==1 && $checkPermissions('bookEdit')" >删除</el-button>
+					<el-button type="success" size="small" @click="updateState(scope.row.bookId,1)" v-if="scope.row.bookState==0 && $checkPermissions('bookEdit')">恢复</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
 
 		<!--工具条-->
 		<el-col :span="24" class="toolbar">
-			<el-button type="danger" :disabled="this.sels.length===0">批量删除</el-button>
-			<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">
+			<el-button type="danger" :disabled="this.sels.length===0" @click="deleteAny()">批量删除</el-button>
+			<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="pageSize" :total="total" style="float:right;">
 			</el-pagination>
 		</el-col>
 
@@ -62,89 +69,87 @@
 				filters: {
 					name: ''
 				},
-				list: [
-                    {
-                        id: 1,
-                        name: '泰戈尔诗集',
-                        price: 18.00,
-                        stock: 999,
-                        pic: 'http://p7f6eba64.bkt.clouddn.com/book_01.gif'
-                    },{
-                        id: 2,
-                        name: '痕记',
-                        price: 22.80,
-                        stock: 999,
-                        pic: 'http://p7f6eba64.bkt.clouddn.com/book_02.gif'
-                    },{
-                        id: 3,
-                        name: '天堂之旅',
-                        price: 25.80,
-                        stock: 999,
-                        pic: 'http://p7f6eba64.bkt.clouddn.com/book_03.gif'
-                    },{
-                        id: 4,
-                        name: '钱钟书集（全10册）',
-                        price: 332.50,
-                        stock: 999,
-                        pic: 'http://p7f6eba64.bkt.clouddn.com/book_04.gif'
-                    },{
-                        id: 5,
-                        name: '赵俪生高昭—夫妻回忆录',
-                        price: 35.50,
-                        stock: 999,
-                        pic: 'http://p7f6eba64.bkt.clouddn.com/book_05.gif'
-                    },{
-                        id: 6,
-                        name: '无聊斋（张绍刚首部随笔杂文作品）',
-                        price: 36.50,
-                        stock: 999,
-                        pic: 'http://p7f6eba64.bkt.clouddn.com/book_06.gif'
-                    },{
-                        id: 7,
-                        name: '一颗热土豆是一张温馨的床',
-                        price: 37.50,
-                        stock: 999,
-                        pic: 'http://p7f6eba64.bkt.clouddn.com/book_07.gif'
-                    },{
-                        id: 8,
-                        name: '李戡戡乱记',
-                        price: 38.50,
-                        stock: 999,
-                        pic: 'http://p7f6eba64.bkt.clouddn.com/book_08.gif'
-                    },{
-                        id: 9,
-                        name: '生生世世未了缘',
-                        price: 39.50,
-                        stock: 999,
-                        pic: 'http://p7f6eba64.bkt.clouddn.com/book_09.gif'
-                    },{
-                        id: 10,
-                        name: '一生有多少爱',
-                        price: 310.50,
-                        stock: 999,
-                        pic: 'http://p7f6eba64.bkt.clouddn.com/book_10.gif'
-                    }
-                ],
+				list: [],
 				total: 1,
-				page: 1,
+				pageIndex: 1,
+				pageSize:10,
 				listLoading: false,
 				sels: [],//列表选中列
 
 			}
 		},
         mounted() {
-			getData.bannerList().then(res => { //测试外部接口（环鹏）
-
-			})
+		    this.bookList();
+//			getData.bannerList().then(res => { //测试外部接口（环鹏）
+//
+//			})
         },
 		methods: {
+		    bookList(){
+		        var params ={
+		            pageIndex:this.pageIndex,
+					pageSize:this.pageSize,
+					name:this.filters.name,
+				}
+				getData.bookList(params).then(res => {
+				    console.log(res);
+					this.list=	res.data.books;
+				    this.total = res.data.count;
+				})
+			},
+			updateState(bookId,state){
+                this.$confirm('是否修改数据？', '确认信息', {
+                    distinguishCancelAndClose: true,
+                    confirmButtonText: '确定',
+                    cancelButtonText: '放弃修改'
+                })
+                    .then(() => {
+                        getData.updateBookState(bookId,state).then(res=>{
+                            if(res.data.message="删除成功"){
+                                this.bookList();
+                            }
+                        })
+                    })
+                    .catch(action => {
+                        this.$message({
+                            type: 'success',
+                            message: '取消成功'
+                        })
+                    });
+			},
+			search(){
+                this.bookList();
+			},
 			handleCurrentChange(val) {
-				this.page = val;
-				this.getUsers();
+				this.pageIndex = val;
+                this.bookList();
 			},
 			selsChange: function (sels) {
 				this.sels = sels;
+				console.log(this.sels)
 			},
+			deleteAny(){
+                this.$confirm('是否修改数据？', '确认信息', {
+                    distinguishCancelAndClose: true,
+                    confirmButtonText: '确定',
+                    cancelButtonText: '放弃修改'
+                })
+                    .then(() => {
+                        for(var i=0;i<this.sels.length;i++){
+                            console.log(this.sels[i])
+                            getData.updateBookState(this.sels[i].bookId,0).then(res=>{
+                                this.bookList();
+                            });
+                        }
+                        //this.bookList();
+                    })
+                    .catch(action => {
+                        this.$message({
+                            type: 'success',
+                            message: '取消成功'
+                        })
+                    });
+			}
 		},
 	}
 

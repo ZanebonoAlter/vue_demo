@@ -14,20 +14,20 @@
 
 		<!--列表-->
 		<el-table :data="list" highlight-current-row v-loading="listLoading" style="width: 100%;">
-			<el-table-column prop="id" label="订单编号">
+			<el-table-column prop="orderId" label="订单编号">
 			</el-table-column>
 			<el-table-column label="订单商品" width="200" sortable>
 				<template slot-scope="scope">
-					<img :src="scope.row.pic" style="margin: 10px; height: 50%"/>
+					<img :src="scope.row.orderImg" style="margin: 10px; height: 50%"/>
 				</template>
 			</el-table-column>
-			<el-table-column prop="name" label="收货人" sortable>
+			<el-table-column prop="orderUsername" label="收货人" sortable>
 			</el-table-column>
-			<el-table-column prop="price" label="订单金额(元)" sortable>
+			<el-table-column prop="orderPrice" label="订单金额(元)" sortable>
 			</el-table-column>
-			<el-table-column prop="time" label="下单时间" sortable>
+			<el-table-column prop="orderCreateTime" label="下单时间" sortable>
 			</el-table-column>
-			<el-table-column prop="state" label="订单状态" sortable>
+			<el-table-column prop="orderStatus" label="订单状态" sortable>
 			</el-table-column>
 			<el-table-column label="操作" width="200">
 				<template slot-scope="scope">
@@ -39,7 +39,7 @@
 
 		<!--工具条-->
 		<el-col :span="24" class="toolbar">
-			<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">
+			<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="pageSize" :total="total" style="float:right;">
 			</el-pagination>
 		</el-col>
 
@@ -57,62 +57,30 @@
                 filters: {
                     name: ''
                 },
-                list: [
-                    {
-                        id: 1,
-                        name: '张三',
-                        price: 18.00,
-						state: '已完成',
-						time: '2004-11-06',
-                        pic: 'http://p7f6eba64.bkt.clouddn.com/book_01.gif'
-                    },{
-                        id: 2,
-                        name: '李四',
-                        price: 22.80,
-                        state: '已付款',
-                        time: '2004-11-06',
-                        pic: 'http://p7f6eba64.bkt.clouddn.com/book_02.gif'
-                    },{
-                        id: 3,
-                        name: '王五',
-                        price: 25.80,
-                        state: '已取消',
-                        time: '2004-11-06',
-                        pic: 'http://p7f6eba64.bkt.clouddn.com/book_03.gif'
-                    },{
-                        id: 4,
-                        name: '马六',
-                        price: 332.50,
-                        state: '已退款',
-                        time: '2004-11-06',
-                        pic: 'http://p7f6eba64.bkt.clouddn.com/book_04.gif'
-                    },{
-                        id: 5,
-                        name: '钱七',
-                        price: 35.50,
-                        state: '已发货',
-                        time: '2004-11-06',
-                        pic: 'http://p7f6eba64.bkt.clouddn.com/book_05.gif'
-                    },{
-                        id: 6,
-                        name: '孙八',
-                        price: 36.50,
-                        state: '已完成',
-                        time: '2004-11-06',
-                        pic: 'http://p7f6eba64.bkt.clouddn.com/book_06.gif'
-                    }
-                ],
+                list: [],
                 total: 1,
                 page: 1,
+				pageSize:10,
                 listLoading: false,
             }
         },
         mounted() {
+            var params = {
+                pageIndex:this.page,
+				pageSize:this.pageSize
+            }
+            this.init(params);
         },
         methods: {
             handleCurrentChange(val) {
                 this.page = val;
             },
+			init(params){
+                getData.orderList(params).then(res=>{
+					this.list=res.data.orders;
+					this.total=res.data.count;
+				})
+			}
         },
     }
 

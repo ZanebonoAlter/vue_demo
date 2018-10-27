@@ -41,7 +41,20 @@
       handleSubmit2(ev) {
         this.$refs.ruleForm2.validate((valid) => {
           if (valid) {
-            this.$router.push({ path: '/table' });
+              var aAccount = this.ruleForm2.account;
+              var aPassword = this.ruleForm2.checkPass;
+//              getData.login(aAccount,aPassword).then(res=>{
+//                  if(res.data.message=="登录成功"){
+//                      this.$message.success(res.data.message);
+//                      sessionStorage.setItem('admin',res.data.adminAccount)
+//                      sessionStorage.setItem('permission',JSON.stringify(res.data.permission))
+//                      this.$router.push({ path: '/table' });
+//                  }else{
+//                      this.$message.error(res.data.message);
+//                  }
+//              })
+              this.$router.push({ path: '/crashList' });
+//            this.$router.push({ path: '/table' });
           } else {
             console.log('error submit!!');
             return false;

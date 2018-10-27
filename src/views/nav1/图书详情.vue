@@ -3,16 +3,16 @@
 		<el-col :span="12" :offset="6">
 			<el-form :model="addForm" label-width="80px" ref="addForm">
 				<el-form-item label="书名：">
-					<span>{{addForm.name}}</span>
+					<span>{{addForm.bookName}}</span>
 				</el-form-item>
 				<el-form-item label="价格：">
-					<span>{{addForm.price}}</span> 元
+					<span>{{addForm.bookPrice}}</span> 元
 				</el-form-item>
 				<el-form-item label="库存：">
-					<span>{{addForm.stock}}</span> 本
+					<span>{{addForm.bookNumber}}</span> 本
 				</el-form-item>
 				<el-form-item label="图片：">
-					<img :src="addForm.pic" />
+					<img :src="addForm.bookImg" />
 				</el-form-item>
 			</el-form>
 		</el-col>
@@ -28,11 +28,7 @@
         data() {
             return {
                 addForm: {
-                    id: 1,
-                    name: '泰戈尔诗集',
-                    price: 18.00,
-                    stock: 999,
-                    pic: 'http://p7f6eba64.bkt.clouddn.com/book_01.gif'
+
                 },
                 addFormRules: {
                     name: [
@@ -50,8 +46,24 @@
                 },
             }
         },
+        mounted(){
+            var bookId=this.$route.query.bId;
+            var params = {
+                bookId:bookId,
+			}
+            this.init_params(params);
+        },
         methods: {
-
+			init(bookId){
+                getData.bookDetail(bookId).then(res=>{
+					this.addForm=res.data.book;
+				})
+			},
+			init_params(params){
+                getData.bookDetail_Params(params).then(res=>{
+                    this.addForm=res.data.book;
+                })
+			}
         }
     }
 
