@@ -1,7 +1,7 @@
 <template>
-    <el-row>
-        <el-col :span="12" :offset="6">
-            <el-form :model="addForm"   ref="addForm">
+    <el-row class="edit-wrap">
+        <el-col>
+            <el-form :model="addForm" label-width="240px" ref="addForm">
                 <el-form-item label="身份证号:" prop="name">
                     <el-input v-model="addForm.pIdentity" auto-complete="off"></el-input>
                 </el-form-item>
@@ -151,9 +151,15 @@
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    .edit-wrap {
+        padding: 50px 40px;
+        border: solid 1px #eeeeee;
+        margin: 10px 60px;
+        border-radius: 4px;
+    }
     .footer {
-        margin: 50px 0;
+        margin: 50px 0 0;
         text-align: center;
     }
 </style>

@@ -1,17 +1,30 @@
 <template>
-  <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-position="left" label-width="0px" class="demo-ruleForm login-container">
-    <h3 class="title">系统登录</h3>
-    <el-form-item prop="account">
-      <el-input type="text" v-model="ruleForm2.account" auto-complete="off" placeholder="账号"></el-input>
-    </el-form-item>
-    <el-form-item prop="checkPass">
-      <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off" placeholder="密码"></el-input>
-    </el-form-item>
-    <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
-    <el-form-item style="width:100%;">
-      <el-button type="primary" style="width:100%;" @click.native.prevent="handleSubmit2" :loading="logining">登录</el-button>
-    </el-form-item>
-  </el-form>
+  <div class="login-bg">
+    <div class="title-wrap">
+      <div class="title-box">
+        <img class="logo" src="../assets/login/logo-logo.svg" alt="">
+        <div class="title">“虫洞” 涉网毒品案件靶向分析模型</div>
+      </div>
+    </div>
+    <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-position="left" label-width="0px" class="demo-ruleForm login-container">
+      <el-form-item class="form-input-box" prop="account">
+        <img src="../assets/login/icon-account.svg" alt="">
+        <el-input class="input" type="text" v-model="ruleForm2.account" auto-complete="off" placeholder="账号"></el-input>
+      </el-form-item>
+      <el-form-item class="form-input-box" prop="checkPass">
+        <img src="../assets/login/icon-pw.svg" alt="">
+        <el-input class="input" type="password" v-model="ruleForm2.checkPass" auto-complete="off"
+                  placeholder="密码"></el-input>
+      </el-form-item>
+      <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
+      <el-form-item class="form-footer" style="width:100%;">
+        <el-button type="primary" class="btn btn-login" @click.native.prevent="handleSubmit2" :loading="logining">登录
+        </el-button>
+        <el-button type="success" class="btn">数字证书登录
+        </el-button>
+      </el-form-item>
+    </el-form>
+  </div>
 </template>
 
 <script>
@@ -65,27 +78,83 @@
   }
 
 </script>
-
+<style lang="scss">
+  .input {
+    .el-input__inner {
+      padding-left: 30px!important;
+    }
+  }
+</style>
 <style lang="scss" scoped>
+  .login-bg {
+    background: url("../assets/login/bg-login.png") center center no-repeat;
+    background-size: 100%;
+    height: 100%;
+    width: 100%;
+    .title-wrap {
+      padding-top: 70px;
+      padding-bottom: 60px;
+      width: 600px;
+      margin: 0 auto;
+      .title-box {
+        position: relative;
+      }
+      .logo{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .title {
+        padding-left: 75px;
+        color: #ffffff;
+        font-size: 30px;
+        line-height: 38px;
+      }
+    }
+  }
   .login-container {
     /*box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);*/
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
     background-clip: padding-box;
-    margin: 180px auto;
-    width: 350px;
-    padding: 35px 35px 15px 35px;
+    /*margin: 180px auto;*/
+    box-sizing: border-box;
+    width: 510px;
+    padding: 48px 40px;
     background: #fff;
     border: 1px solid #eaeaea;
-    box-shadow: 0 0 25px #cac6c6;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
+    border-radius: 4px;
+    margin: 0 auto;
     .title {
       margin: 0px auto 40px auto;
       text-align: center;
       color: #505458;
     }
     .remember {
-      margin: 0px 0px 35px 0px;
+      margin: 0px 0px 24px 0px;
+    }
+    .btn {
+      background-color: #2FC25B;
+      margin: 0;
+      display: block;
+      width: 100%;
+    }
+    .btn-login {
+      background-color: #1890FF;
+      margin-bottom: 25px;
+    }
+    .form-footer {
+      margin: 0;
+    }
+    .form-input-box {
+      .el-form-item__content {
+        position: relative;
+        > img {
+          z-index: 9;
+          position: absolute;
+          top: 12px;
+          left: 12px;
+        }
+      }
     }
   }
 </style>

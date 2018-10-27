@@ -3,17 +3,16 @@
 		<el-row>
 			<el-input
 					type="textarea"
-					:rows="2"
+					:rows="5"
 					placeholder="请输入筛选内容,空格分隔"
 					v-model="textarea">
 			</el-input>
-			<template>
-				<el-checkbox-group
-						v-model="checkedList"
-						>
-					<el-checkbox v-for="object in checkList" :label="object.pName" :key="object.pId">{{object.pName}}</el-checkbox>
-				</el-checkbox-group>
-			</template>
+			<el-checkbox-group
+					class="check-area"
+					v-model="checkedList"
+					>
+				<el-checkbox v-for="object in checkList" :label="object.pName" :key="object.pId">{{object.pName}}</el-checkbox>
+			</el-checkbox-group>
 			<el-button type="primary" @click="init">确认筛选</el-button>
 		</el-row>
 		<div id="container" style="height: 960px;width: 100%"></div>
@@ -43,7 +42,7 @@
                     animationDurationUpdate: 1500,
                     animationEasingUpdate: 'quinticInOut',
                     series : [
-						{
+                        {
                             tooltip: {},
                             name: 'Person',
                             type: 'graph',
@@ -56,29 +55,29 @@
                                 name: '郭燕',
                                 value: 0,
                                 symbolSize: 100,
-								category:0,
+                                category:0,
                                 label: {
                                     normal: {
                                         show:true,
                                         position: ['50%', '50%'],
                                         formatter: '郭燕',
-										fontSize:20
+                                        fontSize:20
                                     }
                                 },
-								tooltip:{
-                                        trigger:'item',
-                                        textStyle:{
-                                            align:'left'
-                                        },
-                                        formatter:'姓名:郭燕\n支付宝：549455722@qq.com\n支付宝ID:2088902744752620',
-                                    	extraCssText:' white-space:pre-wrap'
-								},
+                                tooltip:{
+                                    trigger:'item',
+                                    textStyle:{
+                                        align:'left'
+                                    },
+                                    formatter:'姓名:郭燕\n支付宝：549455722@qq.com\n支付宝ID:2088902744752620',
+                                    extraCssText:' white-space:pre-wrap'
+                                },
                             },{
                                 name: '郑宇',
                                 value: 0,
                                 symbolSize: 30,
                                 category:0,
-								label: {
+                                label: {
                                     normal: {
                                         show:true,
                                         position: 'top',
@@ -141,11 +140,11 @@
                                         formatter:"500",
                                     }
                                 },
-								lineStyle:{
-									normal:{
+                                lineStyle:{
+                                    normal:{
                                         width:5,
-									}
-								},
+                                    }
+                                },
                                 symbol:['circle','arrow'],
                             },{
                                 source: "郭燕",
@@ -189,8 +188,8 @@
                     ]
                 },
                 textarea:'',
-				checkList:[],
-				checkedList:[],
+                checkList:[],
+                checkedList:[],
                 isIndeterminate: true,
                 checkAll: false,
 			}
@@ -248,6 +247,11 @@
 
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.check-area {
+	padding: 10px 0 25px 0;
+}
+#container {
+	margin: 20px 0;
+}
 </style>

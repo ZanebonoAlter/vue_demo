@@ -22,12 +22,12 @@
 			</el-form>
 		</el-col>
 
-		根节点人物列表
+		<div class="title-box">根节点人物列表</div>
 		<!--列表-->
-		<el-table :data="node" highlight-current-row style="width: 100%;">
-			<el-table-column prop="nodeName" label="姓名" >
+		<el-table class="table-box" border :data="node" highlight-current-row style="width: 100%;">
+			<el-table-column align="center" prop="nodeName" label="姓名" >
 			</el-table-column>
-			<el-table-column label="操作" >
+			<el-table-column align="center" label="操作" >
 				<template slot-scope="scope">
 					<el-button type="primary" size="small" @click="$router.push({path:'/personDetail?type=node',query:{name:scope.row.nodeName}})">查看</el-button>
 					<!--<el-button type="danger" size="small" @click="updateState(scope.row.bookId,0)" >删除</el-button>-->
@@ -35,11 +35,11 @@
 			</el-table-column>
 		</el-table>
 
-		一层挖掘人物列表
-		<el-table :data="first_list" highlight-current-row style="width: 100%;" >
-			<el-table-column prop="nodeName" label="姓名" >
+		<div class="title-box">一层挖掘人物列表</div>
+		<el-table class="table-box" border :data="first_list" highlight-current-row style="width: 100%;" >
+			<el-table-column align="center" prop="nodeName" label="姓名" >
 			</el-table-column>
-			<el-table-column label="操作" >
+			<el-table-column align="center" label="操作" >
 				<template slot-scope="scope">
 					<el-button type="primary" size="small" @click="$router.push({path:'/personDetail?type=node',query:{name:scope.row.nodeName}})">查看</el-button>
 					<!--<el-button type="danger" size="small" @click="updateState(scope.row.bookId,0)" >删除</el-button>-->
@@ -47,18 +47,18 @@
 			</el-table-column>
 		</el-table>
 
-		二层挖掘人物列表
-		<el-table :data="second_list" highlight-current-row style="width: 100%;" v-if="isTwo">
-			<el-table-column prop="nodeName" label="姓名" >
+		<div class="title-box" v-if="isTwo">二层挖掘人物列表</div>
+		<el-table class="table-box" border :data="second_list" highlight-current-row style="width: 100%;" v-if="isTwo">
+			<el-table-column align="center" prop="nodeName" label="姓名" >
 			</el-table-column>
-			<el-table-column label="操作" >
+			<el-table-column align="center" label="操作" >
 				<template slot-scope="scope">
 					<el-button type="primary" size="small" @click="$router.push({path:'/personDetail?type=node',query:{name:scope.row.nodeName}})">查看</el-button>
 					<!--<el-button type="danger" size="small" @click="updateState(scope.row.bookId,0)" >删除</el-button>-->
 				</template>
 			</el-table-column>
 		</el-table>
-		<div id="container" style="height: 960px;width: 100%"></div>
+		<div class="chart-wrap" id="container" style="height: 960px;width: 100%"></div>
 	</section>
 </template>
 
@@ -264,6 +264,7 @@
                 var echarts = require('echarts');
                 var dom = document.getElementById("container");
                 var myChart = echarts.init(dom);
+                myChart.showLoading();
 				if(!this.isTwo){
                     getData.one_person_List(params).then(res=>{
                         this.node = res.data.node;
@@ -273,7 +274,7 @@
                         myChart.setOption(this.option, true);
                     })
 				}else{
-					getData.two_person_List(params).then(res=>{
+                    getData.two_person_List(params).then(res=>{
                         this.node = res.data.node;
                         this.first_list=res.data.first_list;
                         this.second_list=res.data.second_list;
@@ -282,12 +283,18 @@
                         myChart.setOption(this.option, true);
                     })
 				}
-			},
-		},
+                myChart.hideLoading();
+			}
+		}
 	}
 
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.title-box {
+	padding: 30px 0 20px 0;
+}
+.chart-wrap {
+	margin: 20px 0;
+}
 </style>

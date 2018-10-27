@@ -25,7 +25,10 @@ body {
 	font-size: 14px;
 	-webkit-font-smoothing: antialiased;
 }
-
+div,p,ul,li {
+	margin: 0;
+	padding: 0;
+}
 #app {
 	position: absolute;
 	top: 0px;
@@ -68,7 +71,12 @@ body {
 	display: block;
 	clear: both;
 }
-
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
 .clearfix{
 	zoom:1;
 }
