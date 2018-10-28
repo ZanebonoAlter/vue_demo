@@ -331,7 +331,14 @@
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.fetchData()
+            if (this.checkedList.length) {
+              this.fetchData()
+            } else {
+              this.$message({
+                message: '请先新增重点人员',
+                type: 'warning'
+              })
+            }
           } else {
             console.log('error submit!!')
             return false;

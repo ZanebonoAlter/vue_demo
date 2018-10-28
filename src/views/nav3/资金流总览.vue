@@ -248,7 +248,14 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
             console.log(this.checkedList)
-            this.init()
+            if (this.checkedList.length) {
+              this.init()
+            } else {
+              this.$message({
+                message: '请先新增重点人员',
+                type: 'warning'
+              })
+            }
           } else {
             console.log('error submit!!')
             return false;
