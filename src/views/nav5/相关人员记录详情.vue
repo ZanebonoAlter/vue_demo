@@ -70,9 +70,11 @@
       init (name1, name2) {
         getData.transfer_Info(name1, name2).then(res => {
           this.list = res.data.list;
-          for (var i = 0; i < this.list.length; i++) {
-            this.list[i].transferRecordCreateTime = format(this.list[i].transferRecordCreateTime);
-            this.list[i].transferRecordPayTime = format(this.list[i].transferRecordPayTime);
+          if (this.list.length) {
+            for (var i = 0; i < this.list.length; i++) {
+              this.list[i].transferRecordCreateTime = format(this.list[i].transferRecordCreateTime);
+              this.list[i].transferRecordPayTime = format(this.list[i].transferRecordPayTime);
+            }
           }
         })
       },
