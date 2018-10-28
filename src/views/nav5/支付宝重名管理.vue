@@ -1,7 +1,7 @@
 <template>
   <section>
     <!--列表-->
-    <el-table :data="list" border highlight-current-row style="width: 100%;">
+    <el-table border :data="list" highlight-current-row style="width: 100%;">
       <el-table-column align="center" prop="pName" label="姓名">
       </el-table-column>
       <el-table-column align="center" label="操作">
@@ -19,31 +19,12 @@
 </template>
 
 <script>
-  import util from '../../common/js/util'
-  //import NProgress from 'nprogress'
   import * as getData from '../../api/api';
-
-  function format (time) {
-    var d = new Date(time);
-    var times = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
-    if (times == '1970-1-1 8:0:0')
-      return ''
-    return times;
-  }
 
   export default {
     data () {
       return {
-        filters: {
-          name: ''
-        },
-        list: [],
-        total: 1,
-        pageIndex: 1,
-        pageSize: 10,
-        listLoading: false,
-        sels: [],//列表选中列
-        searchName: ''
+        list: []
       }
     },
     mounted () {
@@ -51,7 +32,7 @@
     },
     methods: {
       init () {
-        getData.person_keyPerson().then(res => {
+        getData.getMuliZhifubao().then(res => {
           this.list = res.data.list;
         })
       }

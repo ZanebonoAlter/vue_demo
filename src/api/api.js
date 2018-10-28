@@ -1,4 +1,5 @@
 import axios from 'axios';
+import qs from 'qs'
 
 axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded'
 
@@ -93,11 +94,12 @@ export const login = (aAccount,aPassword) => { return axios.post('/back/admin/lo
 /*
 获取资金流列表-所有
  */
-export const transferList_All = (pageIndex,pageSize) =>{return axios.get('/back/transferrecord/select/selectAll/'+pageIndex+'/'+pageSize)}
+export const transferList_All = (pageIndex,pageSize,params) =>{
+  return axios.get('/back/transferrecord/select/selectAll/'+pageIndex+'/'+pageSize, {params: params})}
 /*
 选择性(暂时最多1千条)
  */
-export const transferList_Search = (pageIndex,pageSize,query) =>{return axios.get('/back/transferrecord/select/selectSearch/'+pageIndex+'/'+pageSize+'/'+query)}
+export const transferList_Search = (pageIndex,pageSize,query, params) =>{return axios.get('/back/transferrecord/select/selectSearch/'+pageIndex+'/'+pageSize+'/'+query, {params: params})}
 
 /*
 获取购物列表-所有
@@ -135,3 +137,15 @@ export const two_person_List = params =>{return axios.get('/back/transferrecord/
 export const transferRecord = params =>{return axios.get('/back/transferrecord/currentCount')}
 //获取当前购物记录数量
 export const buyRecord = params =>{return axios.get('/back/buyrecord/currentCount')}
+//获取有多个支付宝的用户列表
+export const getMuliZhifubao = params =>{return axios.get('/back/transferrecord/getMuliZhifubao')}
+// 查询指定日期内的时间，分页查询
+export const getDateFilter = (pageIndex,pageSize,query) =>{return axios.get('/back/transferrecord/queryDate/'+pageIndex+'/'+pageSize+'/'+query)}
+//查询指定人名的转入转出条数
+export const queryInfoName = params =>{return axios.get('/back/transferrecord/queryInfoName',{ params: params })}
+// 上下线分析一层
+export const queryGraphFirst = (custom, number) =>{return axios.get(`/back/transferrecord/queryGraphFirst?custom=${custom}&number=${number}`)}
+// 上下线分析二层s
+export const queryGraphSecond = (custom) =>{return axios.get(`/back/transferrecord/queryGraphSecond?custom=${custom}`)}
+// 异常资金流
+export const exceptionRecord = (minFee, maxFee) =>{return axios.get(`/back/transferrecord/exceptionRecord?minFee=${minFee}&maxFee=${maxFee}`)}

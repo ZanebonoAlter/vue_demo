@@ -1,5 +1,51 @@
 <template>
   <section>
+    <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="100px" class="person-wrap">
+      <el-form-item
+        v-for="(domain, index) in dynamicValidateForm.domains"
+        :label="'重点人员' + Number(index + 1)"
+        :key="domain.key"
+        :prop="'domains.' + index + '.pName'"
+        :rules="{
+      required: true, message: '重点人员姓名不能为空', trigger: 'blur'
+    }"
+      >
+        <el-input placeholder="请输入重点人员姓名" class="person-input" v-model="domain.pName"></el-input>
+        <span class="del-btn" @click.prevent="removeDomain(domain)">点击删除</span>
+        <!--<el-button @click.prevent="removeDomain(domain)">删除</el-button>-->
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="submitForm('dynamicValidateForm')">筛选</el-button>
+        <el-button @click="addDomain">新增重点人员</el-button>
+      </el-form-item>
+    </el-form>
+    <div class="person-list-wrap" v-if="dynamicValidateForm.domains.length">
+      <div class="person-list-title">重点人员列表：</div>
+      <el-tag
+        v-if="tag.pName"
+        class="list-item"
+        v-for="tag in dynamicValidateForm.domains"
+        :key="tag.name"
+        closable
+        @close="removeDomain(tag)"
+        :type="tag.type">
+        {{tag.pName}}
+      </el-tag>
+    </div>
+    <!--<div>-->
+      <!--<el-input-->
+        <!--type="textarea"-->
+        <!--:rows="5"-->
+        <!--placeholder="请输入筛选内容,空格分隔"-->
+        <!--v-model="textarea">-->
+      <!--</el-input>-->
+      <!--<el-checkbox-group-->
+        <!--class="check-area"-->
+        <!--v-model="checkedList"-->
+      <!--&gt;-->
+        <!--<el-checkbox v-for="object in checkList" :label="object.pName" :key="object.pId">{{object.pName}}</el-checkbox>-->
+      <!--</el-checkbox-group>-->
+    <!--</div>-->
     <!--工具条-->
     <el-col :span="24" class="toolbar" style="padding-bottom: 0">
       <el-form :inline="true" :model="filters">
@@ -10,17 +56,19 @@
             inactive-text="一层挖掘">
           </el-switch>
         </el-form-item>
-        <el-form-item>
-          转账记录数量>=&nbsp
-          <el-input-number v-model="filters.count" placeholder="记录数量"></el-input-number>
+        <el-form-item label="请选择节点数量" v-if="!isTwo">
+          <el-select v-model="filters.number" placeholder="请选择人员数量">
+            <el-option
+              v-for="item in options"
+              :key="item"
+              :label="item"
+              :value="item">
+            </el-option>
+          </el-select>
         </el-form-item>
-        <el-form-item>
-          每笔金额大小>=&nbsp
-          <el-input-number v-model="filters.fee" placeholder="金额数量"></el-input-number>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="init">查询</el-button>
-        </el-form-item>
+        <!--<el-form-item>-->
+          <!--<el-button type="primary" @click="init">筛选</el-button>-->
+        <!--</el-form-item>-->
       </el-form>
     </el-col>
 
@@ -84,9 +132,23 @@
   }
 
   export default {
+    computed: {
+      checkedList () {
+        return this.dynamicValidateForm.domains.map(v => v.pName)
+      }
+    },
     data () {
       return {
+        options: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+        dynamicValidateForm: {
+          domains: [{
+            pName: ''
+          }]
+        },
+        checkList: [],
+        textarea: '',
         filters: {
+          number: 1,
           count: 0,
           fee: 0
         },
@@ -266,6 +328,72 @@
 //		    this.init();
     },
     methods: {
+      submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            this.fetchData()
+          } else {
+            console.log('error submit!!')
+            return false;
+          }
+        })
+      },
+      addDomain() {
+        this.dynamicValidateForm.domains.push({
+          pName: '',
+          key: Date.now()
+        });
+      },
+      removeDomain(item) {
+        var index = this.dynamicValidateForm.domains.indexOf(item)
+        if (index !== -1) {
+          this.dynamicValidateForm.domains.splice(index, 1)
+        }
+      },
+      fetchData () {
+        let params = {
+          custom: this.checkedList,
+          number: this.filters.number
+        }
+        if (!this.isTwo) {
+        //  一层
+          getData.queryGraphFirst(params.custom, params.number).then((res) => {
+            console.log('queryGraphFirst', res)
+            this.first_list = res.data.first_list;
+            this.drawChart(res)
+          })
+        } else {
+        //  二层
+          getData.queryGraphSecond(params.custom).then((res) => {
+            console.log('queryGraphSecond', res)
+            this.first_list = res.data.first_list;
+            this.drawChart(res)
+          })
+        }
+      },
+      drawChart (res) {
+        var echarts = require('echarts');
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        myChart.showLoading();
+        this.node = res.data.node;
+        this.second_list = res.data.second_list;
+        this.option.series[0].data = res.data.graph.data;
+        this.option.series[0].links = res.data.graph.links;
+        myChart.on('click', function (params) {
+          console.log(params)
+          //window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.data.label.normal.formatter));
+          if (params.dataType == "node") {
+            window.location = '#/personDetail?type=node&name=' + params.name;
+//                            this.$router.push({path:'/personDetail',query:{type:"node",name:params.name}})
+          } else if (params.dataType == "edge") {
+            window.location = '#/peopleDetail?type=edge&name1=' + params.data.source + '&name2=' + params.data.target;
+//                            this.$router.push({path:'/personDetail',query:{type:"edge",name1:params.data.source,name2:params.data.target}})
+          }
+        })
+        myChart.setOption(this.option, true);
+        myChart.hideLoading();
+      },
       init () {
         var params = {
           num: this.filters.count,
@@ -278,7 +406,6 @@
         if (!this.isTwo) {
           getData.one_person_List(params).then(res => {
             this.node = res.data.node;
-            this.first_list = res.data.first_list;
             this.option.series[0].data = res.data.graph.data;
             this.option.series[0].links = res.data.graph.links;
             myChart.setOption(this.option, true);
@@ -304,7 +431,29 @@
   .title-box {
     padding: 30px 0 20px 0;
   }
-
+  .person-wrap {
+    .person-input {
+      width: 300px;
+      margin-right: 20px;
+    }
+    .del-btn {
+      cursor: pointer;
+      font-size: 12px;
+      color: red;
+    }
+  }
+  .check-area {
+    padding: 10px 0 20px 0;
+  }
+  .person-list-wrap {
+    .person-list-title {
+      padding-bottom: 10px;
+    }
+    padding-top: 10px;
+    .list-item + .list-item {
+      margin-left: 5px;
+    }
+  }
   .chart-wrap {
     margin: 20px 0;
   }

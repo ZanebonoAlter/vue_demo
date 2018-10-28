@@ -40,10 +40,10 @@
 			</el-table-column>
 			<el-table-column label="操作" width="250">
 				<template slot-scope="scope">
-					<el-button type="primary" size="small" @click="$router.push({path:'/adminDetail',query:{aId:scope.row.aId}})">查看</el-button>
-					<el-button size="small" @click="$router.push({path:'/adminUpdate',query:{aId:scope.row.aId}})">编辑</el-button>
-					<el-button type="danger" size="small" @click="updateState(scope.row.aId,0)" v-if="scope.row.aState==1">删除</el-button>
-					<el-button type="success" size="small" @click="updateState(scope.row.aId,1)" v-else>恢复</el-button>
+					<el-button type="primary" size="medium" @click="$router.push({path:'/adminDetail',query:{aId:scope.row.aId}})">查看</el-button>
+					<el-button size="medium" @click="$router.push({path:'/adminUpdate',query:{aId:scope.row.aId}})">编辑</el-button>
+					<el-button type="danger" size="medium" @click="updateState(scope.row.aId,0)" v-if="scope.row.aState==1">删除</el-button>
+					<el-button type="success" size="medium" @click="updateState(scope.row.aId,1)" v-else>恢复</el-button>
 				</template>
 			</el-table-column>
 		</el-table>

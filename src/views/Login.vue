@@ -1,12 +1,14 @@
 <template>
   <div class="login-bg">
-    <div class="title-wrap">
-      <div class="title-box">
-        <img class="logo" src="../assets/login/logo-logo.svg" alt="">
-        <div class="title">“虫洞” 涉网毒品案件靶向分析模型</div>
+    <div class="login-box">
+      <div class="title-wrap">
+        <div class="title-box">
+          <img class="logo" src="../assets/login/logo-logo.svg" alt="">
+          <span class="title">“虫洞” 涉网毒品案件靶向分析模型</span>
+        </div>
       </div>
-    </div>
-    <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-position="left" label-width="0px" class="demo-ruleForm login-container">
+      <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-position="left" label-width="0px"
+             class="demo-ruleForm login-container">
       <el-form-item class="form-input-box" prop="account">
         <img src="../assets/login/icon-account.svg" alt="">
         <el-input class="input" type="text" v-model="ruleForm2.account" auto-complete="off" placeholder="账号"></el-input>
@@ -24,13 +26,15 @@
         </el-button>
       </el-form-item>
     </el-form>
+    </div>
   </div>
 </template>
 
 <script>
   import * as getData from '../api/api';
+
   export default {
-    data() {
+    data () {
       return {
         logining: false,
         ruleForm2: {
@@ -39,11 +43,11 @@
         },
         rules2: {
           account: [
-            { required: true, message: '请输入账号', trigger: 'blur' },
+            {required: true, message: '请输入账号', trigger: 'blur'},
             //{ validator: validaePass }
           ],
           checkPass: [
-            { required: true, message: '请输入密码', trigger: 'blur' },
+            {required: true, message: '请输入密码', trigger: 'blur'},
             //{ validator: validaePass2 }
           ]
         },
@@ -51,11 +55,11 @@
       };
     },
     methods: {
-      handleSubmit2(ev) {
+      handleSubmit2 (ev) {
         this.$refs.ruleForm2.validate((valid) => {
           if (valid) {
-              var aAccount = this.ruleForm2.account;
-              var aPassword = this.ruleForm2.checkPass;
+            var aAccount = this.ruleForm2.account;
+            var aPassword = this.ruleForm2.checkPass;
 //              getData.login(aAccount,aPassword).then(res=>{
 //                  if(res.data.message=="登录成功"){
 //                      this.$message.success(res.data.message);
@@ -66,7 +70,7 @@
 //                      this.$message.error(res.data.message);
 //                  }
 //              })
-              this.$router.push({ path: '/crashList' });
+            this.$router.push({path: '/crashList'});
 //            this.$router.push({ path: '/table' });
           } else {
             console.log('error submit!!');
@@ -81,7 +85,7 @@
 <style lang="scss">
   .input {
     .el-input__inner {
-      padding-left: 30px!important;
+      padding-left: 40px !important;
     }
   }
 </style>
@@ -91,27 +95,32 @@
     background-size: 100%;
     height: 100%;
     width: 100%;
+    .login-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+    }
     .title-wrap {
-      padding-top: 70px;
       padding-bottom: 60px;
       width: 600px;
       margin: 0 auto;
       .title-box {
+        text-align: center;
         position: relative;
       }
-      .logo{
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
+      .logo {
+        vertical-align: -22px;
       }
       .title {
-        padding-left: 75px;
+        padding-left: 16px;
         color: #ffffff;
         font-size: 30px;
         line-height: 38px;
       }
     }
   }
+
   .login-container {
     /*box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);*/
     background-clip: padding-box;
@@ -121,7 +130,7 @@
     padding: 48px 40px;
     background: #fff;
     border: 1px solid #eaeaea;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.50);
     border-radius: 4px;
     margin: 0 auto;
     .title {

@@ -35,10 +35,10 @@
 			</el-table-column>
 			<el-table-column label="操作" width="250">
 				<template slot-scope="scope">
-					<el-button type="primary" size="small" @click="$router.push({path:'/roleDetail',query:{roleId:scope.row.roleId}})" >查看</el-button>
-					<el-button size="small" @click="$router.push({path:'/roleUpdate',query:{roleId:scope.row.roleId}})" v-if="$checkPermissions('roleEdit')">编辑</el-button>
-					<el-button type="danger" size="small" @click="updateState(scope.row.roleId,0)" v-if="scope.row.roleState==1 && $checkPermissions('roleEdit')">冻结</el-button>
-					<el-button type="success" size="small" @click="updateState(scope.row.roleId,1)" v-if="scope.row.roleState==0 && $checkPermissions('roleEdit')">恢复</el-button>
+					<el-button type="primary" size="medium" @click="$router.push({path:'/roleDetail',query:{roleId:scope.row.roleId}})" >查看</el-button>
+					<el-button size="medium" @click="$router.push({path:'/roleUpdate',query:{roleId:scope.row.roleId}})" v-if="$checkPermissions('roleEdit')">编辑</el-button>
+					<el-button type="danger" size="medium" @click="updateState(scope.row.roleId,0)" v-if="scope.row.roleState==1 && $checkPermissions('roleEdit')">冻结</el-button>
+					<el-button type="success" size="medium" @click="updateState(scope.row.roleId,1)" v-if="scope.row.roleState==0 && $checkPermissions('roleEdit')">恢复</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
