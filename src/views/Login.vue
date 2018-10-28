@@ -22,8 +22,8 @@
       <el-form-item class="form-footer" style="width:100%;">
         <el-button type="primary" class="btn btn-login" @click.native.prevent="handleSubmit2" :loading="logining">登录
         </el-button>
-        <el-button type="success" class="btn">数字证书登录
-        </el-button>
+        <!--<el-button type="success" class="btn">数字证书登录-->
+        <!--</el-button>-->
       </el-form-item>
     </el-form>
     </div>
@@ -146,10 +146,12 @@
       margin: 0;
       display: block;
       width: 100%;
+      & + .btn {
+        margin-bottom: 25px;
+      }
     }
     .btn-login {
       background-color: #1890FF;
-      margin-bottom: 25px;
     }
     .form-footer {
       margin: 0;
