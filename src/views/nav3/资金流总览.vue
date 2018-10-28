@@ -337,10 +337,12 @@
     padding: 10px 0 20px 0;
   }
   .person-list-wrap {
+    padding: 10px;
+    border: solid 1px red;
+    border-radius: 4px;
     .person-list-title {
       padding-bottom: 10px;
     }
-    padding-top: 10px;
     .list-item + .list-item {
       margin-left: 5px;
     }
