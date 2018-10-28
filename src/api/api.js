@@ -149,3 +149,5 @@ export const queryGraphFirst = (custom, number) =>{return axios.get(`/back/trans
 export const queryGraphSecond = (custom) =>{return axios.get(`/back/transferrecord/queryGraphSecond?custom=${custom}`)}
 // 异常资金流
 export const exceptionRecord = (minFee, maxFee) =>{return axios.get(`/back/transferrecord/exceptionRecord?minFee=${minFee}&maxFee=${maxFee}`)}
+// 重点人关系
+export const queryGraph = (query) =>{return axios.get('/back/transferrecord/queryGraph?custom='+query)}

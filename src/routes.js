@@ -49,6 +49,13 @@ let routes = [
     name: '',
     hidden: true
   },
+  {
+    path: '/',
+    redirect: '/login',
+    component: Login,
+    name: '',
+    hidden: true
+  },
   //{ path: '/main', component: Main },
   // {
   //     permission:'bookManager',
@@ -88,6 +95,7 @@ let routes = [
   {
     permission: 'systemManager',
     path: '/',
+    redirect: '/keyPerson',
     component: Home,
     name: '人员档案',
     iconCls: 'el-icon-setting',
@@ -103,6 +111,7 @@ let routes = [
   {
     permission: 'systemManager',
     path: '/',
+    redirect: '/crashAdd',
     component: Home,
     name: '资金往来',
     iconCls: 'el-icon-setting',
@@ -116,6 +125,7 @@ let routes = [
   {
     permission: 'systemManager',
     path: '/',
+    redirect: '/buyList',
     component: Home,
     name: '线上购物',
     iconCls: 'el-icon-setting',
@@ -129,6 +139,7 @@ let routes = [
   {
     permission: 'systemManager',
     path: '/',
+    redirect: '/crashList',
     component: Home,
     name: '综合挖掘',
     iconCls: 'el-icon-setting',

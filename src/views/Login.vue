@@ -70,7 +70,7 @@
 //                      this.$message.error(res.data.message);
 //                  }
 //              })
-            this.$router.push({path: '/crashList'});
+            this.$router.push({path: '/keyPerson'});
 //            this.$router.push({ path: '/table' });
           } else {
             console.log('error submit!!');

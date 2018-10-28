@@ -280,9 +280,9 @@
         var params = this.textarea.split(" ");
         params.push(this.checkedList)
         console.log(params);
-        getData.graph_Info(params).then(res => {
-          this.option.series[0].data = res.data.data;
-          this.option.series[0].links = res.data.links;
+        getData.queryGraph(params).then(res => {
+          this.option.series[0].data = res.data.graph.data;
+          this.option.series[0].links = res.data.graph.links;
           console.log(this.option)
           myChart.setOption(this.option, true);
           myChart.hideLoading();
