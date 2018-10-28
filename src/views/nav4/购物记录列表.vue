@@ -17,8 +17,6 @@
 
     <!--列表-->
     <el-table :data="list" border highlight-current-row @selection-change="selsChange" style="width: 100%;">
-      <el-table-column align="center" type="selection" width="55">
-      </el-table-column>
       <el-table-column align="center" prop="buyRecordOrderId" label="订单编号" width="150">
       </el-table-column>
       <el-table-column align="center" prop="buyRecordOrderFee" label="付款金额" width="150" sortable>

@@ -39,7 +39,7 @@
         logining: false,
         ruleForm2: {
           account: 'admin',
-          checkPass: '123456'
+          checkPass: 'Baian123456'
         },
         rules2: {
           account: [

@@ -66,7 +66,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <div class="chart-wrap" id="container" style="height: 960px;width: 100%"></div>
+    <div class="chart-wrap" id="container" style="height: 800px;width: 100%"></div>
   </section>
 </template>
 

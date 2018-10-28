@@ -114,7 +114,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <div class="chart-wrap" id="container" style="height: 960px;width: 100%"></div>
+    <div class="chart-wrap" id="container" style="height: 500px;width: 100%"></div>
   </section>
 </template>
 
@@ -326,8 +326,18 @@
     },
     mounted () {
 //		    this.init();
+      this.init_list();
     },
     methods: {
+      init_list () {
+        getData.person_keyPerson().then(res => {
+          this.checkList = res.data.list;
+          this.dynamicValidateForm.domains = res.data.list
+          for (var i = 0; i < this.checkList.length; i++) {
+            this.checkedList[i] = this.checkList[i].pName;
+          }
+        })
+      },
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {

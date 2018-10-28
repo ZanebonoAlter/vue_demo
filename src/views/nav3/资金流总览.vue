@@ -49,7 +49,7 @@
       <!--</el-checkbox-group>-->
       <!--<el-button size="medium" type="primary" @click="init">确认筛选</el-button>-->
     <!--</el-row>-->
-    <div id="container" style="height: 960px;width: 100%"></div>
+    <div id="container" style="height: 500px;width: 100%"></div>
   </section>
 </template>
 
@@ -315,8 +315,8 @@
             this.checkedList[i] = this.checkList[i].pName;
           }
         })
-      },
-    },
+      }
+    }
   }
 
 </script>

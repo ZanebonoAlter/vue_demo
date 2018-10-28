@@ -25,42 +25,45 @@
         </el-form-item>
       </el-form>
     </el-col>
-
+    <div class="money-wrap clearfix">
+      <div class="money-item fl">转入金额：<span>{{money.in}}元</span></div>
+      <div class="money-item fl">转出金额：<span>{{money.out}}元</span></div>
+    </div>
     <!--列表-->
     <el-table :data="list" border highlight-current-row @selection-change="selsChange" style="width: 100%;">
-      <el-table-column type="selection" width="55">
+      <!--<el-table-column type="selection" width="55">-->
+      <!--</el-table-column>-->
+      <el-table-column align="center" prop="transferRecordFlowId" label="流水号" width="150">
       </el-table-column>
-      <el-table-column prop="transferRecordFlowId" label="流水号" width="150">
+      <el-table-column align="center" prop="transferRecordCreateTime" label="创建时间" width="150" sortable>
       </el-table-column>
-      <el-table-column prop="transferRecordCreateTime" label="创建时间" width="150" sortable>
+      <el-table-column align="center" prop="transferRecordPayTime" label="付款时间" width="150" sortable>
       </el-table-column>
-      <el-table-column prop="transferRecordPayTime" label="付款时间" width="150" sortable>
-      </el-table-column>
-      <el-table-column prop="transferRecordPayFee" label="金额" width="150" sortable>
+      <el-table-column align="center" prop="transferRecordPayFee" label="金额" width="150" sortable>
         <template slot-scope="scope">
           <el-tag type="danger" v-if="scope.row.transferRecordPayFee>5000">{{scope.row.transferRecordPayFee}}</el-tag>
           <el-tag v-else>{{scope.row.transferRecordPayFee}}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column prop="transferRecordPayZhifubao" label="付款支付宝" width="150" sortable>
+      <el-table-column align="center" prop="transferRecordPayZhifubao" label="付款支付宝" width="150" sortable>
       </el-table-column>
-      <el-table-column prop="transferRecordPayZhifubaoId" label="付款支付宝ID" width="150" sortable>
+      <el-table-column align="center" prop="transferRecordPayZhifubaoId" label="付款支付宝ID" width="150" sortable>
       </el-table-column>
-      <el-table-column prop="transferRecordPayName" label="付款人" width="150" sortable>
+      <el-table-column align="center" prop="transferRecordPayName" label="付款人" width="150" sortable>
       </el-table-column>
-      <el-table-column prop="transferRecordCollectionZhifubao" label="收款支付宝" width="150" sortable>
+      <el-table-column align="center" prop="transferRecordCollectionZhifubao" label="收款支付宝" width="150" sortable>
       </el-table-column>
-      <el-table-column prop="transferRecordCollectionZhifubaoId" label="收款支付宝ID" width="150" sortable>
+      <el-table-column align="center" prop="transferRecordCollectionZhifubaoId" label="收款支付宝ID" width="150" sortable>
       </el-table-column>
-      <el-table-column prop="transferRecordCollectionName" label="收款人" width="150" sortable>
+      <el-table-column align="center" prop="transferRecordCollectionName" label="收款人" width="150" sortable>
       </el-table-column>
-      <el-table-column prop="transferRecordRemark" label="转账备注" width="150" sortable>
+      <el-table-column align="center" prop="transferRecordRemark" label="转账备注" width="150" sortable>
       </el-table-column>
-      <el-table-column prop="transferRecordFlow" label="资金流向" width="150" sortable>
+      <el-table-column align="center" prop="transferRecordFlow" label="资金流向" width="150" sortable>
       </el-table-column>
-      <el-table-column prop="transferRecordStatus" label="状态" width="150" sortable>
+      <el-table-column align="center" prop="transferRecordStatus" label="状态" width="150" sortable>
       </el-table-column>
-      <el-table-column prop="transferRecordProductName" label="转账产品名称" width="150" sortable>
+      <el-table-column align="center" prop="transferRecordProductName" label="转账产品名称" width="150" sortable>
       </el-table-column>
     </el-table>
     <!--工具条-->
@@ -88,6 +91,10 @@
   export default {
     data () {
       return {
+        money: {
+          in: null,
+          out: null
+        },
         filters: {
           date: ['2017/10/1', '2018/10/22'],
           name: ''
@@ -118,6 +125,8 @@
         getData.transferList_All(this.pageIndex, this.pageSize, {...date}).then(res => {
           console.log(res);
           this.list = res.data.list;
+          this.money.in = res.data.in;
+          this.money.out = res.data.out
           if (this.list) {
             for (var i = 0; i < this.list.length; i++) {
               this.list[i].transferRecordCreateTime = format(this.list[i].transferRecordCreateTime);
@@ -138,6 +147,8 @@
           getData.transferList_All(this.pageIndex, this.pageSize, {...date}).then(res => {
             console.log(res);
             this.list = res.data.list;
+            this.money.in = res.data.in;
+            this.money.out = res.data.out
             if (this.list) {
               for (var i = 0; i < this.list.length; i++) {
                 this.list[i].transferRecordCreateTime = format(this.list[i].transferRecordCreateTime);
@@ -150,6 +161,8 @@
           getData.transferList_Search(this.pageIndex, this.pageSize, this.searchName,{...date}).then(res => {
             console.log(res);
             this.list = res.data.list;
+            this.money.in = res.data.in;
+            this.money.out = res.data.out
             if (this.list) {
               for (var i = 0; i < this.list.length; i++) {
                 this.list[i].transferRecordCreateTime = format(this.list[i].transferRecordCreateTime);
@@ -169,6 +182,8 @@
           getData.transferList_All(this.pageIndex, this.pageSize, {...date}).then(res => {
             console.log(res);
             this.list = res.data.list;
+            this.money.in = res.data.in;
+            this.money.out = res.data.out
             if (this.list) {
               for (var i = 0; i < this.list.length; i++) {
                 this.list[i].transferRecordCreateTime = format(this.list[i].transferRecordCreateTime);
@@ -181,6 +196,8 @@
           getData.transferList_Search(this.pageIndex, this.pageSize, this.searchName, {...date}).then(res => {
             console.log(res);
             this.list = res.data.list;
+            this.money.in = res.data.in;
+            this.money.out = res.data.out
             if (this.list) {
               for (var i = 0; i < this.list.length; i++) {
                 this.list[i].transferRecordCreateTime = format(this.list[i].transferRecordCreateTime);
@@ -204,6 +221,16 @@
 
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.money-wrap {
+  padding-bottom: 20px;
+  .money-item {
+    & + .money-item {
+      padding-left: 20px;
+    }
+    > span {
+      color: red;
+    }
+  }
+}
 </style>

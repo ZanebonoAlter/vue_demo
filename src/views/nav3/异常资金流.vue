@@ -7,7 +7,7 @@
           <el-input type="number" v-model="filters.minFee" placeholder="请输入金额"></el-input>
         </el-form-item>
         <el-form-item>
-          <span><</span>
+          <span>-</span>
         </el-form-item>
         <el-form-item prop="maxFee">
           <el-input type="number" v-model="filters.maxFee" placeholder="请输入金额"></el-input>
