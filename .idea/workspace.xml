@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cde76387-00e8-43d8-bf98-4b79da13e056" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/views/nav3/上下线分析.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/上下线分析.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/nav3/资金流总览.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/资金流总览.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/XX购物记录.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/XX转账记录.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav3/导入资金流.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav3/导入资金流.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/nav4/导入购物记录.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/nav4/导入购物记录.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,29 +23,29 @@
         <counts>
           <entry key="editorconfig" value="1" />
           <entry key="gitignore" value="1" />
-          <entry key="js" value="18" />
-          <entry key="vue" value="56" />
+          <entry key="js" value="21" />
+          <entry key="vue" value="58" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JavaScript" value="18" />
+          <entry key="JavaScript" value="21" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Vue.js" value="56" />
+          <entry key="Vue.js" value="58" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="1" />
           <entry key="js" value="653" />
-          <entry key="vue" value="3086" />
+          <entry key="vue" value="3548" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="653" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Vue.js" value="3086" />
+          <entry key="Vue.js" value="3548" />
         </counts>
       </usages-collector>
     </session>
@@ -52,18 +55,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/api/api.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="116" column="78" selection-start-line="116" selection-start-column="78" selection-end-line="116" selection-end-column="78" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/nav5/支付宝重名管理.vue">
           <provider selected="true" editor-type-id="text-editor">
@@ -94,23 +85,26 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/routes.js">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/views/nav3/导入资金流.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="25" column="44" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="44" />
+            <state relative-caret-position="60">
+              <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+              <folding>
+                <element signature="n#el-form-item#0;n#el-col#1;n#el-row#0;n#el-form#0;n#section#0;n#template#0;n#!!top" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/views/nav3/上下线分析.vue">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/nav4/导入购物记录.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="455" column="18" lean-forward="true" selection-start-line="455" selection-start-column="18" selection-end-line="455" selection-end-column="18" />
+            <state relative-caret-position="105">
+              <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
               <folding>
-                <element signature="n#style#0;n#el-col#0;n#section#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#4;n#section#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#el-form-item#0;n#el-col#0;n#el-row#0;n#el-form#0;n#section#0;n#template#0;n#!!top" />
+                <element signature="n#el-form-item#0;n#el-col#1;n#el-row#0;n#el-form#0;n#section#0;n#template#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -120,8 +114,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>abnormalCapital</find>
-      <find>transferList</find>
       <find>filters</find>
       <find>transferList_All</find>
       <find>required</find>
@@ -150,6 +142,8 @@
       <find>loading</find>
       <find>重点人员列表</find>
       <find>submitForm</find>
+      <find>crashAdd</find>
+      <find>upload-tips</find>
     </findStrings>
     <replaceStrings>
       <replace>res.data.count</replace>
@@ -178,15 +172,12 @@
         <option value="$PROJECT_DIR$/src/views/nav2/角色列表.vue" />
         <option value="$PROJECT_DIR$/src/views/nav1/图书列表.vue" />
         <option value="$PROJECT_DIR$/src/main.js" />
-        <option value="$PROJECT_DIR$/config/index.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/views/nav4/导入购物记录.vue" />
         <option value="$PROJECT_DIR$/src/views/nav5/相关人员记录详情.vue" />
         <option value="$PROJECT_DIR$/src/views/404.vue" />
         <option value="$PROJECT_DIR$/src/views/Home.vue" />
         <option value="$PROJECT_DIR$/src/views/nav5/编辑重点人员.vue" />
         <option value="$PROJECT_DIR$/src/views/nav5/人员详情.vue" />
-        <option value="$PROJECT_DIR$/src/views/nav3/导入资金流.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/异常资金流.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/数据挖掘.vue" />
         <option value="$PROJECT_DIR$/src/views/nav5/支付宝重名管理.vue" />
@@ -199,6 +190,9 @@
         <option value="$PROJECT_DIR$/src/views/Login.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/资金流总览.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/上下线分析.vue" />
+        <option value="$PROJECT_DIR$/config/index.js" />
+        <option value="$PROJECT_DIR$/src/views/nav4/导入购物记录.vue" />
+        <option value="$PROJECT_DIR$/src/views/nav3/导入资金流.vue" />
       </list>
     </option>
   </component>
@@ -220,9 +214,9 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="-14" />
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="35" />
+    <option name="y" value="46" />
     <option name="width" value="1280" />
     <option name="height" value="689" />
   </component>
@@ -238,6 +232,11 @@
             <path>
               <item name="vue_demo" type="b2602c69:ProjectViewProjectNode" />
               <item name="vue_demo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue_demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue_demo" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="vue_demo" type="b2602c69:ProjectViewProjectNode" />
@@ -262,6 +261,18 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="nav3" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue_demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue_demo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="nav4" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue_demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue_demo" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -290,11 +301,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/src/views/nav3" />
       <recent name="$PROJECT_DIR$/src/views/nav5" />
       <recent name="$PROJECT_DIR$" />
       <recent name="D:\java_100_study\admin\src\views\nav3" />
-      <recent name="D:\java_100_study\admin\src\views\nav5" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -346,10 +357,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="239667000" />
+    <option name="totallyTimeSpent" value="241947000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-14" y="23" width="1280" height="689" extended-state="0" />
+    <frame x="35" y="46" width="1280" height="689" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49393415" visible="true" weight="0.25121164" />
@@ -378,12 +389,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/prod.env.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -500,13 +505,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav4/导入购物记录.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="57" column="11" lean-forward="true" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/dev.env.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -553,13 +551,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-276">
-          <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/vuex/getters.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -587,13 +578,6 @@
             <element signature="n#style#0;n#el-col#0;n#el-tab-pane#1;n#el-tabs#0;n#section#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#el-pagination#0;n#el-col#1;n#el-tab-pane#1;n#el-tabs#0;n#section#0;n#template#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/nav3/导入资金流.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -701,13 +685,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="25" column="44" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav5/支付宝重名管理.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -727,11 +704,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav3/上下线分析.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="455" column="18" lean-forward="true" selection-start-line="455" selection-start-column="18" selection-end-line="455" selection-end-column="18" />
+        <state relative-caret-position="1973">
+          <caret line="461" column="29" lean-forward="true" selection-start-line="461" selection-start-column="29" selection-end-line="461" selection-end-column="29" />
           <folding>
             <element signature="n#style#0;n#el-col#0;n#section#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#4;n#section#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="23" column="40" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/dev-server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/prod.env.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="14" column="55" lean-forward="true" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav4/导入购物记录.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+          <folding>
+            <element signature="n#el-form-item#0;n#el-col#0;n#el-row#0;n#el-form#0;n#section#0;n#template#0;n#!!top" />
+            <element signature="n#el-form-item#0;n#el-col#1;n#el-row#0;n#el-form#0;n#section#0;n#template#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/nav3/导入资金流.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+          <folding>
+            <element signature="n#el-form-item#0;n#el-col#1;n#el-row#0;n#el-form#0;n#section#0;n#template#0;n#!!top" />
           </folding>
         </state>
       </provider>

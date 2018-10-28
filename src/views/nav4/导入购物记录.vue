@@ -1,15 +1,30 @@
 <template>
   <section>
-    <div class="upload-tips">当前已导入{{count}}条</div>
     <el-form ref="addForm">
-      <el-form-item label="excel文件">
-        <el-upload
-          action="/back/buyrecord/upload"
-          :on-success="successUpload">
-          <el-button size="medium" type="primary">点击上传</el-button>
-        </el-upload>
-      </el-form-item>
+      <el-row>
+        <el-col :span="5">
+          <el-form-item>
+            <el-button class="upload-btn" size="medium" type="primary">
+              <a href="../static/XX购物记录.xlsx" target="_blank">点击下载模板文件</a></el-button>
+          </el-form-item>
+        </el-col>
+        <el-col :span="5">
+          <el-form-item>
+            <el-upload
+              action="/back/buyrecord/upload"
+              :on-success="successUpload">
+              <el-button size="medium" type="primary">点击上传Excel文件</el-button>
+            </el-upload>
+          </el-form-item>
+        </el-col>
+      </el-row>
     </el-form>
+    <div class="upload-tips">当前已导入{{count}}条</div>
+    <div class="desc-wrap">
+      注意：
+      <p>1.文件命名：使用“XX购物记录”(XX这里指的是姓名)</p>
+      <p>1.文件格式：使用EXCEL表格(.xlsx后缀名文件)</p>
+    </div>
     <!--<div class="footer">-->
     <!--<el-button type="primary" @click="upload">提交</el-button>-->
     <!--</div>-->
@@ -59,7 +74,16 @@
     margin: 50px 0;
     text-align: center;
   }
-
+  .upload-btn {
+    a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+  }
+  .desc-wrap {
+    color: red;
+    line-height: 30px;
+  }
   .upload-tips {
     padding-bottom: 10px;
   }
