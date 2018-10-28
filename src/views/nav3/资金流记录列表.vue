@@ -26,8 +26,8 @@
       </el-form>
     </el-col>
     <div class="money-wrap clearfix">
-      <div class="money-item fl">转入金额：<span>{{money.in}}元</span></div>
-      <div class="money-item fl">转出金额：<span>{{money.out}}元</span></div>
+      <div class="money-item fl">转入金额：<span>{{(money.in).toFixed(2)}}元</span></div>
+      <div class="money-item fl">转出金额：<span>{{(money.out).toFixed(2)}}元</span></div>
     </div>
     <!--列表-->
     <el-table :data="list" border highlight-current-row @selection-change="selsChange" style="width: 100%;">
@@ -92,8 +92,8 @@
     data () {
       return {
         money: {
-          in: null,
-          out: null
+          in: 0,
+          out: 0
         },
         filters: {
           date: ['2017/10/1', '2018/10/22'],
