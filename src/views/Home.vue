@@ -8,7 +8,7 @@
         <img v-if="collapsed" class="header-logo collapsed" src="../assets/login/logo-logo.svg" alt="">
         <span v-else
               :class="{'header-notCollapsed': !collapsed}"><img class="header-logo" src="../assets/login/logo-logo.svg"
-                                                                alt=""><span>虫洞
+                                                  alt=""><span>虫洞
         </span></span>
       </el-col>
       <el-col :span="10">
@@ -75,18 +75,17 @@
       <section class="content-container">
         <div class="grid-content bg-purple-light">
           <el-col :span="24" class="breadcrumb-container">
-            <strong class="title">{{$route.name}}</strong>
-            <el-breadcrumb separator="/" class="breadcrumb-inner">
-              <el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
-                {{ item.name }}
-              </el-breadcrumb-item>
-            </el-breadcrumb>
+            <!--<strong class="title">{{$route.name}}</strong>-->
+            <!--<el-breadcrumb separator="/" class="breadcrumb-inner">-->
+              <!--<el-breadcrumb-item v-for="item in $route.matched" :key="item.path">-->
+                <!--{{ item.name }}-->
+              <!--</el-breadcrumb-item>-->
+            <!--</el-breadcrumb>-->
+            <bread-crumb></bread-crumb>
           </el-col>
           <el-col :span="24" class="content-wrapper">
             <transition name="fade" mode="out-in">
-              <navigation>
-                <router-view></router-view>
-              </navigation>
+              <router-view></router-view>
             </transition>
           </el-col>
         </div>
@@ -96,7 +95,9 @@
 </template>
 
 <script>
+  import BreadCrumb from './BreadCrumb'
   export default {
+    components: {BreadCrumb},
     data () {
       return {
         name: sessionStorage.getItem('admin'),
@@ -151,8 +152,7 @@
       }
     },
     mounted () {
-      console.log('$route', this.$route)
-
+      console.log('route', this.$route, this.$router)
     }
   }
 
@@ -270,7 +270,7 @@
         // bottom: 0px;
         // left: 230px;
         overflow-y: scroll;
-        padding: 20px;
+        padding: 0 20px 20px;
         .breadcrumb-container {
           //margin-bottom: 15px;
           .title {
@@ -291,25 +291,21 @@
       }
     }
   }
-
   .header-logo {
     width: 30px;
     height: auto;
   }
-
   .header-notCollapsed {
     > img {
       vertical-align: middle;
       margin-right: 10px;
     }
   }
-
   .user-title {
     color: #ffffff;
     cursor: pointer;
     display: block;
   }
-
   .el-menu-vertical-demo {
     width: auto !important;
   }

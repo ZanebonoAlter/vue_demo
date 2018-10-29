@@ -9,40 +9,13 @@ import store from './vuex/store'
 import Vuex from 'vuex'
 //import NProgress from 'nprogress'
 //import 'nprogress/nprogress.css'
-import routes from './routes'
+import router from './routes'
 import 'font-awesome/css/font-awesome.min.css'
-
 Vue.use(ElementUI)
 Vue.use(VueRouter)
 Vue.use(Vuex)
 
 //NProgress.configure({ showSpinner: false });
-
-const router = new VueRouter({
-  routes,
-  scrollBehavior (to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    } else {
-      return { x: 0, y: 0 }
-    }
-  }
-})
-
-router.beforeEach((to, from, next) => {
-  //NProgress.start();
-  if (to.path == '/login') {
-    sessionStorage.removeItem('admin');
-  }
-  //let user = JSON.parse(sessionStorage.getItem('user'));
-	// let user = sessionStorage.getItem('admin');
-  // if (!user && to.path != '/login') {
-  //   next({ path: '/login' })
-  // } else {
-  //   next()
-  // }
-    next();
-})
 Vue.prototype.$checkPermissions = (val) => {
     return JSON.parse(sessionStorage['permission']).indexOf(val)>-1
 }

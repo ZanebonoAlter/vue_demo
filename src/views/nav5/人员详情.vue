@@ -33,7 +33,7 @@
       </el-col>
       <el-col :span="12">
         <div class="edit-box">
-          <el-button type="primary" size="medium" v-if='this.type=="重点人员"' @click='editPerson'>编辑</el-button>
+          <el-button type="primary" size="medium" v-if='this.type=="重点人员"' @click='showEditDialog = true'>编辑</el-button>
           <el-button type="primary" size="medium" v-if='this.type=="重点人员"' @click='deletePerson'>标记为普通人员</el-button>
           <!--<el-button type="warning" >标记为嫌疑人</el-button>-->
           <el-button type="danger" size="medium" v-else @click="addPerson">标记为重点人员</el-button>
@@ -240,12 +240,14 @@
         </el-col>
       </el-tab-pane>
     </el-tabs>
+    <edit-component :show="showEditDialog"></edit-component>
   </section>
 </template>
 
 <script>
   import util from '../../common/js/util'
   //import NProgress from 'nprogress'
+  import EditComponent from '../EditDialog'
   import * as getData from '../../api/api';
 
   function format (time) {
@@ -257,8 +259,10 @@
   }
 
   export default {
+    components: {EditComponent},
     data () {
       return {
+        showEditDialog: false,
         activeName: 'first',
         zhifubao_result: {},
         filters: {

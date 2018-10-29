@@ -35,6 +35,7 @@ import keyPerson from './views/nav5/重点人管理.vue'
 import peopleList from './views/nav5/人员列表.vue'
 import keyPersonEdit from './views/nav5/编辑重点人员.vue'
 import duplicatePerson from './views/nav5/支付宝重名管理.vue'
+import VueRouter from "vue-router";
 
 let routes = [
   {
@@ -101,11 +102,79 @@ let routes = [
     iconCls: 'el-icon-setting',
     hidden: false,
     children: [
-      {path: '/personDetail', component: personDetail, name: '人员详情', permission: 'personDetail', hidden: true},
-      {path: '/peopleDetail', component: peopleDetail, name: '人员相关记录', permission: 'peopleDetail', hidden: true},         {path: '/keyPerson', component: keyPerson, name: '重点人管理', permission: 'keyPerson'},
-      {path: '/peopleList', component: peopleList, name: '一人一档', permission: 'personDetail'},
-      {path: '/duplicatePerson', component: duplicatePerson, name: '多支付宝用户', permission: 'duplicatePerson'},
-      {path: '/keyPersonEdit', component: keyPersonEdit, name: '编辑重点人员', permission: 'keyPersonEdit', hidden: true},
+      {
+        path: '/peopleDetail',
+        component: peopleDetail,
+        name: '人员相关记录',
+        permission: 'peopleDetail1',
+        hidden: true
+      },
+      {
+        path: '/keyPerson',
+        component: keyPerson,
+        name: '重点人管理',
+        permission: 'keyPerson',
+        children: [
+          {
+            path: 'personDetail',
+            component: personDetail,
+            name: '人员详情',
+            permission: 'personDetail',
+            hidden: true
+          },
+          {
+            path: 'keyPersonEdit',
+            component: keyPersonEdit,
+            name: '编辑重点人员',
+            permission: 'keyPersonEdit',
+            hidden: true
+          }
+        ]
+      },
+      {
+        path: '/peopleList',
+        component: peopleList,
+        name: '一人一档',
+        permission: 'personDetail',
+        children: [
+          {
+            path: 'personDetail',
+            component: personDetail,
+            name: '人员详情',
+            permission: 'personDetail',
+            hidden: true
+          }
+        ]
+      },
+      {
+        path: '/duplicatePerson',
+        component: duplicatePerson,
+        name: '多支付宝用户',
+        permission: 'duplicatePerson',
+        children: [
+          {
+            path: 'personDetail',
+            component: personDetail,
+            name: '人员详情',
+            permission: 'personDetail',
+            hidden: true
+          },
+          {
+            path: 'keyPersonEdit',
+            component: keyPersonEdit,
+            name: '编辑重点人员',
+            permission: 'keyPersonEdit',
+            hidden: true
+          }
+        ]
+      },
+      {
+        path: '/keyPersonEdit',
+        component: keyPersonEdit,
+        name: '编辑重点人员',
+        permission: 'keyPersonEdit',
+        hidden: true
+      }
     ]
   },
   {
@@ -118,8 +187,20 @@ let routes = [
     hidden: false,
     children: [
       // { path:'/crashDetail', component:AdminList, name:'资金流分析',permission:'crashDetail',hidden:true},
-      {path: '/crashAdd', component: crashAdd, name: '流水导入', permission: 'crashAdd', hidden: false},
-      {path: '/crashTable', component: crashTable, name: '流水查询', permission: 'crashTable', hidden: false},
+      {
+        path: '/crashAdd',
+        component: crashAdd,
+        name: '流水导入',
+        permission: 'crashAdd',
+        hidden: false
+      },
+      {
+        path: '/crashTable',
+        component: crashTable,
+        name: '流水查询',
+        permission: 'crashTable',
+        hidden: false
+      }
     ]
   },
   {
@@ -131,9 +212,27 @@ let routes = [
     iconCls: 'el-icon-setting',
     hidden: false,
     children: [
-      {path: '/buyDetail', component: AdminList, name: '购买人分析', permission: 'buyDetail', hidden: true},
-      {path: '/buyList', component: buyList, name: '购买记录查询', permission: 'buyList', hidden: false},
-      {path: '/buyAdd', component: buyAdd, name: '购买记录导入', permission: 'buyList', hidden: false},
+      {
+        path: '/buyDetail',
+        component: AdminList,
+        name: '购买人分析',
+        permission: 'buyDetail',
+        hidden: true
+      },
+      {
+        path: '/buyList',
+        component: buyList,
+        name: '购买记录查询',
+        permission: 'buyList',
+        hidden: false
+      },
+      {
+        path: '/buyAdd',
+        component: buyAdd,
+        name: '购买记录导入',
+        permission: 'buyList',
+        hidden: false
+      }
     ]
   },
   {
@@ -146,10 +245,61 @@ let routes = [
     hidden: false,
     children: [
       // { path:'/crashDetail', component:AdminList, name:'资金流分析',permission:'crashDetail',hidden:true},
-      {path: '/crashList', component: crashList, name: '重点人员关系', permission: 'crashList', hidden: false},
-      {path: '/lineAnalysis', component: lineAnalysis, name: '上下线分析', permission: 'lineAnalysis', hidden: false},
-      {path: '/crashAnalysis', component: crashAnalysis, name: '全网泛化扫描', permission: 'crashAnalysis', hidden: false},
-      {path: '/abnormalCapital', component: abnormalCapital, name: '异常资金流', permission: 'abnormalCapital', hidden: false}
+      {
+        path: '/crashList',
+        component: crashList,
+        name: '重点人员关系',
+        permission: 'crashList',
+        hidden: false,
+        children: [
+          {
+            path: 'personDetail',
+            component: personDetail,
+            name: '人员详情',
+            permission: 'personDetail',
+            hidden: true
+          }
+        ]
+      },
+      {
+        path: '/lineAnalysis',
+        component: lineAnalysis,
+        name: '上下线分析',
+        permission: 'lineAnalysis',
+        hidden: false,
+        children: [
+          {
+            path: 'personDetail',
+            component: personDetail,
+            name: '人员详情',
+            permission: 'personDetail',
+            hidden: true
+          }
+        ]
+      },
+      {
+        path: '/crashAnalysis',
+        component: crashAnalysis,
+        name: '全网泛化扫描',
+        permission: 'crashAnalysis',
+        hidden: false,
+        children: [
+          {
+            path: 'personDetail',
+            component: personDetail,
+            name: '人员详情',
+            permission: 'personDetail',
+            hidden: true
+          }
+        ]
+      },
+      {
+        path: '/abnormalCapital',
+        component: abnormalCapital,
+        name: '异常资金流',
+        permission: 'abnormalCapital',
+        hidden: false
+      }
     ]
   },
   {
@@ -158,5 +308,30 @@ let routes = [
     redirect: {path: '/404'}
   }
 ];
+const router = new VueRouter({
+  mode: 'history',
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return {x: 0, y: 0}
+    }
+  }
+})
 
-export default routes;
+router.beforeEach((to, from, next) => {
+  //NProgress.start();
+  if (to.path == '/login') {
+    sessionStorage.removeItem('admin');
+  }
+  //let user = JSON.parse(sessionStorage.getItem('user'));
+  // let user = sessionStorage.getItem('admin');
+  // if (!user && to.path != '/login') {
+  //   next({ path: '/login' })
+  // } else {
+  //   next()
+  // }
+  next();
+})
+export default router;

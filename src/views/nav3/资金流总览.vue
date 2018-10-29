@@ -1,44 +1,48 @@
 <template>
   <section>
-    <el-form :model="person" ref="personValidateForm" label-width="110px" class="person-wrap">
-      <el-form-item
-        :label="'重点人员姓名'"
-        prop="pName"
-        :rules="{
+    <sub-view>
+      <el-form :model="person" ref="personValidateForm" label-width="110px" class="person-wrap">
+        <el-form-item
+          :label="'重点人员姓名'"
+          prop="pName"
+          :rules="{
       required: true, message: '重点人员姓名不能为空', trigger: 'blur'
     }"
-      >
-        <el-input placeholder="请输入重点人员姓名" class="person-input" v-model="person.pName"></el-input>
-        <el-button @click.prevent="addMainPerson('personValidateForm')">新增重点人员</el-button>
-        <el-button type="primary" @click="submitForm">筛选</el-button>
-        <el-button type="primary" @click="resetSubmit">重置</el-button>
-      </el-form-item>
-    </el-form>
-    <div class="person-list-wrap" v-if="checkList.length">
-      <div class="person-list-title">重点人员列表：</div>
-      <div class="person-list-box">
-        <el-tag
-          v-if="tag.pName"
-          class="list-item"
-          v-for="tag in checkList"
-          :key="tag.name"
-          closable
-          @close="removeMainPerson(tag)"
-          :type="tag.type">
-          {{tag.pName}}
-        </el-tag>
+        >
+          <el-input placeholder="请输入重点人员姓名" class="person-input" v-model="person.pName"></el-input>
+          <el-button @click.prevent="addMainPerson('personValidateForm')">新增重点人员</el-button>
+          <el-button type="primary" @click="submitForm">筛选</el-button>
+          <el-button type="primary" @click="resetSubmit">重置</el-button>
+        </el-form-item>
+      </el-form>
+      <div class="person-list-wrap" v-if="checkList.length">
+        <div class="person-list-title">重点人员列表：</div>
+        <div class="person-list-box">
+          <el-tag
+            v-if="tag.pName"
+            class="list-item"
+            v-for="tag in checkList"
+            :key="tag.name"
+            closable
+            @close="removeMainPerson(tag)"
+            :type="tag.type">
+            {{tag.pName}}
+          </el-tag>
+        </div>
       </div>
-    </div>
-    <div id="container" style="height: 1080px;width: 100%"></div>
+      <div id="container" style="height: 1080px;width: 100%"></div>
+    </sub-view>
   </section>
 </template>
 
 <script>
+  import SubView from '../SubView'
   import util from '../../common/js/util'
   //import NProgress from 'nprogress'
   import * as getData from '../../api/api';
 
   export default {
+    components: {SubView},
     computed: {
       checkedList () {
         return this.checkList.map(v => v.pName)
@@ -73,20 +77,20 @@
 //              circular: {
 //                rotateLabel: true
 //              },
-               force:{
-                  initLayout:'circular',
-                   repulsion:10000,
-                   layoutAnimation:false
-               },
+              force: {
+                initLayout: 'circular',
+                repulsion: 10000,
+                layoutAnimation: false
+              },
               focusNodeAdjacency: true,
-                itemStyle: {
-                    normal: {
-                        borderColor: '#fff',
-                        borderWidth: 1,
-                        shadowBlur: 10,
-                        shadowColor: 'rgba(0, 0, 0, 0.3)'
-                    }
-                },
+              itemStyle: {
+                normal: {
+                  borderColor: '#fff',
+                  borderWidth: 1,
+                  shadowBlur: 10,
+                  shadowColor: 'rgba(0, 0, 0, 0.3)'
+                }
+              },
               data: [{
                 name: '郭燕',
                 value: 0,
@@ -221,9 +225,9 @@
                 }
               },
               emphasis: {
-                  lineStyle: {
-                      width: 10
-                  }
+                lineStyle: {
+                  width: 10
+                }
               }
 
             }
@@ -242,7 +246,7 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
             this.checkList.push(this.person)
-            this.person = { pName: '' }
+            this.person = {pName: ''}
             if (this.checkedList.length) {
               this.init()
             } else {
@@ -261,7 +265,7 @@
         await this.init_list()
         this.init()
       },
-      submitForm() {
+      submitForm () {
         if (this.checkedList.length) {
           this.init()
         } else {
@@ -271,7 +275,7 @@
           })
         }
       },
-      removeMainPerson(item) {
+      removeMainPerson (item) {
         var index = this.checkList.indexOf(item)
         if (index !== -1) {
           this.checkList.splice(index, 1)
@@ -290,55 +294,58 @@
           myChart.setOption(this.option, true);
           myChart.hideLoading();
           var all = this;
-          myChart.on('click',function (params) {
+          myChart.on('click', function (params) {
             console.log(params);
             console.log(all)
             //window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.data.label.normal.formatter));
             if (params.dataType == "node") {
-                all.$confirm('请确认接下来的操作', '确认信息', {
-                    distinguishCancelAndClose: true,
-                    showClose:false,
-                    confirmButtonText: '展开相关节点',
-                    cancelButtonText: '查看个人信息'
-                }).then(() => {
-                    if(params.data.extend==0){
-                        var str = params.data.flag;
-                        var level=0;
-                        console.log(str)
-                        if(str!=0){
-                            level = str.split(",")[0];
-                            console.log(level)
+              all.$confirm('请确认接下来的操作', '确认信息', {
+                distinguishCancelAndClose: true,
+                showClose: false,
+                confirmButtonText: '展开相关节点',
+                cancelButtonText: '查看个人信息'
+              }).then(() => {
+                if (params.data.extend == 0) {
+                  var str = params.data.flag;
+                  var level = 0;
+                  console.log(str)
+                  if (str != 0) {
+                    level = str.split(",")[0];
+                    console.log(level)
+                  }
+
+                  getData.Extend_Graph(params.data.name, level).then(res => {
+                    for (var i = 0; i < res.data.graph.data.length; i++) {
+                      var flag = 0;
+                      for (var j = 0; j < all.option.series[0].data.length; j++) {
+                        if (all.option.series[0].data[j].name == res.data.graph.data[i].name) {
+                          flag = 1;
+                          break;
                         }
-
-                        getData.Extend_Graph(params.data.name,level).then(res=>{
-                            for(var i=0;i<res.data.graph.data.length;i++){
-                                var flag=0;
-                                for(var j=0;j<all.option.series[0].data.length;j++){
-                                    if(all.option.series[0].data[j].name==res.data.graph.data[i].name){
-                                        flag=1;
-                                        break;
-                                    }
-                                }
-                                if(flag==0)
-                                    all.option.series[0].data.push(res.data.graph.data[i])
-                            }
-                            for(var i=0;i<res.data.graph.links.length;i++){
-                                all.option.series[0].links.push(res.data.graph.links[i])
-                            }
-                            console.log(all.option);
-                            myChart.setOption(all.option, true);
-                        })
-                        params.data.extend=1
-                    }else{
-
+                      }
+                      if (flag == 0)
+                        all.option.series[0].data.push(res.data.graph.data[i])
                     }
-                }).catch(action => {
-                    all.$router.push({path:'/personDetail',query:{type:"node",name:params.name}})
-                    });
+                    for (var i = 0; i < res.data.graph.links.length; i++) {
+                      all.option.series[0].links.push(res.data.graph.links[i])
+                    }
+                    console.log(all.option);
+                    myChart.setOption(all.option, true);
+                  })
+                  params.data.extend = 1
+                } else {
+
+                }
+              }).catch(action => {
+                all.$router.push({path: '/crashList/personDetail', query: {type: "node", name: params.name}})
+              });
 //              window.location = '#/personDetail?type=node&name=' + params.name;
 //                            this.$router.push({path:'/personDetail',query:{type:"node",name:params.name}})
             } else if (params.dataType == "edge") {
-                  all.$router.push({path:'/personDetail',query:{type:"edge",name1:params.data.source,name2:params.data.target}})
+              all.$router.push({
+                path: '/crashList/personDetail',
+                query: {type: "edge", name1: params.data.source, name2: params.data.target}
+              })
 //                            this.$router.push({path:'/personDetail',query:{type:"edge",name1:params.data.source,name2:params.data.target}})
             }
           })
@@ -370,9 +377,11 @@
       color: red;
     }
   }
+
   .check-area {
     padding: 10px 0 20px 0;
   }
+
   .person-list-wrap {
     border: solid 1px #d3dce6;
     border-radius: 4px;
