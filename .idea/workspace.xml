@@ -2,12 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cde76387-00e8-43d8-bf98-4b79da13e056" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/static/XX购物记录.xlsx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/static/XX转账记录.xlsx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/static/css/app.2438a9c627e7e64edb647bd99b55274d.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/static/css/app.2438a9c627e7e64edb647bd99b55274d.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/static/js/app.1380b29da574b2eec4da.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/static/js/app.1380b29da574b2eec4da.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/static/js/manifest.66a05e9a114bbc7b2466.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/static/js/vendor.15e6c434a687e25b3bca.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/static/js/vendor.15e6c434a687e25b3bca.js.map" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/static/css/app.3d917eb9f664eff5f9af721e1f0700d0.css" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/static/css/app.3d917eb9f664eff5f9af721e1f0700d0.css.map" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/static/js/app.77131b3724af662555e4.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/static/js/app.77131b3724af662555e4.js.map" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/static/js/manifest.e70d9016289e64028db6.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/static/js/manifest.e70d9016289e64028db6.js.map" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/static/js/vendor.8f6211a7eb57f8740511.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/static/js/vendor.8f6211a7eb57f8740511.js.map" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -18,6 +26,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/nav3/上下线分析.vue" afterPath="$PROJECT_DIR$/src/views/nav3/上下线分析.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/nav3/数据挖掘.vue" afterPath="$PROJECT_DIR$/src/views/nav3/数据挖掘.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/nav3/资金流总览.vue" afterPath="$PROJECT_DIR$/src/views/nav3/资金流总览.vue" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/dist/static/js/manifest.e70d9016289e64028db6.js.map" afterPath="$PROJECT_DIR$/dist/static/js/manifest.66a05e9a114bbc7b2466.js.map" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -70,7 +79,7 @@
       <file leaf-file-name="数据挖掘.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/nav3/数据挖掘.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
+            <state relative-caret-position="4324">
               <caret line="366" column="12" lean-forward="false" selection-start-line="366" selection-start-column="12" selection-end-line="366" selection-end-column="12" />
               <folding>
                 <element signature="n#style#0;n#el-col#0;n#section#0;n#template#0;n#!!top" expanded="true" />
@@ -107,8 +116,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="31" column="39" lean-forward="false" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
+            <state relative-caret-position="419">
+              <caret line="31" column="43" lean-forward="false" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -117,7 +126,7 @@
       <file leaf-file-name="Login.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/Login.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="920">
+            <state relative-caret-position="1748">
               <caret line="76" column="47" lean-forward="false" selection-start-line="76" selection-start-column="47" selection-end-line="76" selection-end-column="47" />
               <folding />
             </state>
@@ -140,7 +149,7 @@
       <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/routes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
+            <state relative-caret-position="483">
               <caret line="21" column="39" lean-forward="false" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
               <folding />
             </state>
@@ -150,7 +159,7 @@
       <file leaf-file-name="资金流总览.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/nav3/资金流总览.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
+            <state relative-caret-position="4324">
               <caret line="315" column="10" lean-forward="false" selection-start-line="315" selection-start-column="10" selection-end-line="366" selection-end-column="12" />
               <folding>
                 <element signature="e#3559#4239#0" expanded="false" />
@@ -192,11 +201,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="api.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/api/api.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="424">
-              <caret line="156" column="25" lean-forward="false" selection-start-line="156" selection-start-column="13" selection-end-line="156" selection-end-column="25" />
+              <caret line="156" column="25" lean-forward="false" selection-start-line="156" selection-start-column="25" selection-end-line="156" selection-end-column="25" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -204,10 +213,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="上下线分析.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="上下线分析.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/nav3/上下线分析.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3">
+            <state relative-caret-position="23">
               <caret line="418" column="0" lean-forward="false" selection-start-line="418" selection-start-column="0" selection-end-line="418" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#el-col#0;n#section#0;n#template#0;n#!!top" expanded="true" />
@@ -242,7 +251,7 @@
       <file leaf-file-name="人员详情.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/nav5/人员详情.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
+            <state relative-caret-position="8993">
               <caret line="395" column="10" lean-forward="true" selection-start-line="395" selection-start-column="10" selection-end-line="395" selection-end-column="10" />
               <folding>
                 <element signature="e#16140#16264#0" expanded="false" />
@@ -331,11 +340,11 @@
         <option value="$PROJECT_DIR$/src/views/nav3/异常资金流.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/资金流记录列表.vue" />
         <option value="$PROJECT_DIR$/src/views/Login.vue" />
-        <option value="$PROJECT_DIR$/config/index.js" />
         <option value="$PROJECT_DIR$/src/api/api.js" />
         <option value="$PROJECT_DIR$/src/views/nav3/资金流总览.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/数据挖掘.vue" />
         <option value="$PROJECT_DIR$/src/views/nav3/上下线分析.vue" />
+        <option value="$PROJECT_DIR$/config/index.js" />
       </list>
     </option>
   </component>
@@ -378,6 +387,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -425,8 +436,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -523,11 +532,12 @@
       <workItem from="1540770717543" duration="240000" />
       <workItem from="1540772113618" duration="1985000" />
       <workItem from="1540786934945" duration="11840000" />
+      <workItem from="1540812249379" duration="130000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="262052000" />
+    <option name="totallyTimeSpent" value="262182000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -539,7 +549,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5193929" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918552" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32918552" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32918552" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -937,35 +947,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="31" column="39" lean-forward="false" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
+        <state relative-caret-position="483">
           <caret line="21" column="39" lean-forward="false" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="156" column="25" lean-forward="false" selection-start-line="156" selection-start-column="13" selection-end-line="156" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/Login.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="920">
+        <state relative-caret-position="1748">
           <caret line="76" column="47" lean-forward="false" selection-start-line="76" selection-start-column="47" selection-end-line="76" selection-end-column="47" />
           <folding />
         </state>
@@ -984,7 +976,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav5/人员详情.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
+        <state relative-caret-position="8993">
           <caret line="395" column="10" lean-forward="true" selection-start-line="395" selection-start-column="10" selection-end-line="395" selection-end-column="10" />
           <folding>
             <element signature="e#16140#16264#0" expanded="false" />
@@ -996,7 +988,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav3/资金流总览.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
+        <state relative-caret-position="4324">
           <caret line="315" column="10" lean-forward="false" selection-start-line="315" selection-start-column="10" selection-end-line="366" selection-end-column="12" />
           <folding>
             <element signature="e#3559#4239#0" expanded="false" />
@@ -1027,7 +1019,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav3/数据挖掘.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
+        <state relative-caret-position="4324">
           <caret line="366" column="12" lean-forward="false" selection-start-line="366" selection-start-column="12" selection-end-line="366" selection-end-column="12" />
           <folding>
             <element signature="n#style#0;n#el-col#0;n#section#0;n#template#0;n#!!top" expanded="true" />
@@ -1062,7 +1054,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/nav3/上下线分析.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3">
+        <state relative-caret-position="23">
           <caret line="418" column="0" lean-forward="false" selection-start-line="418" selection-start-column="0" selection-end-line="418" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#el-col#0;n#section#0;n#template#0;n#!!top" expanded="true" />
@@ -1089,6 +1081,24 @@
             <element signature="e#16021#18795#0" expanded="false" />
             <element signature="e#16582#18060#0" expanded="false" />
             <element signature="e#18064#18090#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="31" column="43" lean-forward="false" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="156" column="25" lean-forward="false" selection-start-line="156" selection-start-column="25" selection-end-line="156" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
