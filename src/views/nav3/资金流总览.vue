@@ -29,7 +29,7 @@
         </el-tag>
       </div>
     </div>
-    <div id="container" style="height: 500px;width: 100%"></div>
+    <div id="container" style="height: 1080px;width: 100%"></div>
   </section>
 </template>
 
@@ -75,7 +75,8 @@
 //              },
                force:{
                   initLayout:'circular',
-                   repulsion:10000
+                   repulsion:10000,
+                   layoutAnimation:false
                },
               focusNodeAdjacency: true,
                 itemStyle: {
