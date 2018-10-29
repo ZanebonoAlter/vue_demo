@@ -41,8 +41,10 @@
       </el-table-column>
       <el-table-column align="center" prop="transferRecordPayFee" label="金额" width="150" sortable>
         <template slot-scope="scope">
-          <el-tag type="danger" v-if="scope.row.transferRecordPayFee>5000">{{scope.row.transferRecordPayFee}}</el-tag>
-          <el-tag v-else>{{scope.row.transferRecordPayFee}}</el-tag>
+          <span class="text-red" v-if="scope.row.transferRecordPayFee>5000">{{scope.row.transferRecordPayFee}}</span>
+          <span class="text-blue" v-else>{{scope.row.transferRecordPayFee}}</span>
+          <!--<el-tag type="danger" v-if="scope.row.transferRecordPayFee>5000"></el-tag>-->
+          <!--<el-tag v-else>{{scope.row.transferRecordPayFee}}</el-tag>-->
         </template>
       </el-table-column>
       <el-table-column align="center" prop="transferRecordPayZhifubao" label="付款支付宝" width="150" sortable>

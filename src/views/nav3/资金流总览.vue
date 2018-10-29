@@ -1,55 +1,34 @@
 <template>
   <section>
-
-    <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="100px" class="person-wrap">
+    <el-form :model="person" ref="personValidateForm" label-width="110px" class="person-wrap">
       <el-form-item
-        v-for="(domain, index) in dynamicValidateForm.domains"
-        :label="'重点人员' + Number(index + 1)"
-        :key="domain.key"
-        :prop="'domains.' + index + '.pName'"
+        :label="'重点人员姓名'"
+        prop="pName"
         :rules="{
       required: true, message: '重点人员姓名不能为空', trigger: 'blur'
     }"
       >
-        <el-input placeholder="请输入重点人员姓名" class="person-input" v-model="domain.pName"></el-input>
-        <span class="del-btn" @click.prevent="removeDomain(domain)">点击删除</span>
-        <!--<el-button>删除</el-button>-->
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('dynamicValidateForm')">筛选</el-button>
-        <el-button type="primary" @click="submitForm('dynamicValidateForm')">重置</el-button>
-        <el-button @click="addDomain">新增重点人员</el-button>
+        <el-input placeholder="请输入重点人员姓名" class="person-input" v-model="person.pName"></el-input>
+        <el-button @click.prevent="addMainPerson('personValidateForm')">新增重点人员</el-button>
+        <el-button type="primary" @click="submitForm">筛选</el-button>
+        <el-button type="primary" @click="resetSubmit">重置</el-button>
       </el-form-item>
     </el-form>
-    <div class="person-list-wrap" v-if="dynamicValidateForm.domains.length">
+    <div class="person-list-wrap" v-if="checkList.length">
       <div class="person-list-title">重点人员列表：</div>
-      <el-tag
-        v-if="tag.pName"
-        class="list-item"
-        v-for="tag in dynamicValidateForm.domains"
-        :key="tag.name"
-        closable
-        @close="removeDomain(tag)"
-        :type="tag.type">
-        {{tag.pName}}
-      </el-tag>
+      <div class="person-list-box">
+        <el-tag
+          v-if="tag.pName"
+          class="list-item"
+          v-for="tag in checkList"
+          :key="tag.name"
+          closable
+          @close="removeMainPerson(tag)"
+          :type="tag.type">
+          {{tag.pName}}
+        </el-tag>
+      </div>
     </div>
-
-    <!--<el-row>-->
-      <!--<el-input-->
-        <!--type="textarea"-->
-        <!--:rows="5"-->
-        <!--placeholder="请输入筛选内容,空格分隔"-->
-        <!--v-model="textarea">-->
-      <!--</el-input>-->
-      <!--<el-checkbox-group-->
-        <!--class="check-area"-->
-        <!--v-model="checkedList"-->
-      <!--&gt;-->
-        <!--<el-checkbox v-for="object in checkList" :label="object.pName" :key="object.pId">{{object.pName}}</el-checkbox>-->
-      <!--</el-checkbox-group>-->
-      <!--<el-button size="medium" type="primary" @click="init">确认筛选</el-button>-->
-    <!--</el-row>-->
     <div id="container" style="height: 500px;width: 100%"></div>
   </section>
 </template>
@@ -62,15 +41,14 @@
   export default {
     computed: {
       checkedList () {
-        return this.dynamicValidateForm.domains.map(v => v.pName)
+        return this.checkList.map(v => v.pName)
       }
     },
     data () {
       return {
-        dynamicValidateForm: {
-          domains: [{
-            pName: ''
-          }]
+        checkList: [],
+        person: {
+          pName: ''
         },
         option: {
           title: {
@@ -250,10 +228,6 @@
             }
           ]
         },
-        textarea: '',
-        checkList: [],
-        isIndeterminate: true,
-        checkAll: false,
       }
     },
     mounted () {
@@ -263,10 +237,11 @@
 //			})
     },
     methods: {
-      submitForm(formName) {
+      addMainPerson (formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            console.log(this.checkedList)
+            this.checkList.push(this.person)
+            this.person = { pName: '' }
             if (this.checkedList.length) {
               this.init()
             } else {
@@ -281,32 +256,33 @@
           }
         })
       },
-      addDomain() {
-        this.dynamicValidateForm.domains.push({
-          pName: '',
-          key: Date.now()
-        });
+      async resetSubmit () {
+        await this.init_list()
+        this.init()
       },
-      removeDomain(item) {
-        var index = this.dynamicValidateForm.domains.indexOf(item)
-        if (index !== -1) {
-          this.dynamicValidateForm.domains.splice(index, 1)
+      submitForm() {
+        if (this.checkedList.length) {
+          this.init()
+        } else {
+          this.$message({
+            message: '请先新增重点人员',
+            type: 'warning'
+          })
         }
       },
-      test () {
-        console.log(this.checkList)
-        console.log(this.checkedList)
+      removeMainPerson(item) {
+        var index = this.checkList.indexOf(item)
+        if (index !== -1) {
+          this.checkList.splice(index, 1)
+          this.fetchData()
+        }
       },
-      init () {
+      init (res) {
         var echarts = require('echarts');
         var dom = document.getElementById("container");
         var myChart = echarts.init(dom);
-        var option = null;
         myChart.showLoading();
-        var params = this.textarea.split(" ");
-        params.push(this.checkedList)
-        console.log(params);
-        getData.queryGraph(params).then(res => {
+        getData.queryGraph(this.checkedList).then(res => {
           this.option.series[0].data = res.data.graph.data;
           this.option.series[0].links = res.data.graph.links;
           console.log(this.option)
@@ -368,10 +344,9 @@
         })
 
       },
-      init_list () {
-        getData.person_keyPerson().then(res => {
+      async init_list () {
+        await getData.person_keyPerson().then(res => {
           this.checkList = res.data.list;
-          this.dynamicValidateForm.domains = res.data.list
           for (var i = 0; i < this.checkList.length; i++) {
             this.checkedList[i] = this.checkList[i].pName;
           }
@@ -398,14 +373,17 @@
     padding: 10px 0 20px 0;
   }
   .person-list-wrap {
-    padding: 10px;
-    border: solid 1px red;
+    border: solid 1px #d3dce6;
     border-radius: 4px;
     .person-list-title {
-      padding-bottom: 10px;
+      padding: 10px;
+      background-color: #d3dce6;
     }
-    .list-item + .list-item {
-      margin-left: 5px;
+    .person-list-box {
+      padding: 10px;
+    }
+    .list-item {
+      margin-right: 5px;
     }
   }
 

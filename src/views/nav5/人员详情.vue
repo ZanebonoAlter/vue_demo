@@ -6,7 +6,7 @@
         <ul class="zfb-box" :model="zhifubao_result">
       <li class="box-item" v-for="(value, key) in zhifubao_result">
         <div><span class="left-label">支付宝ID：</span>{{key}}</div>
-        <div><span class="left-label">对应的支付宝账号：</span><span v-for="val in value">{{ val }}</span></div>
+        <div><span class="left-label">对应的支付宝账号：</span><span class="label-span" v-for="val in value">{{ val }}</span></div>
       </li>
       <li class="clearfix box-item">
         <span class="left-label fl">手机号：</span>
@@ -46,31 +46,31 @@
           <el-form :model="addForm" ref="addForm">
             <el-row>
               <el-col :span="10" :offset="2">
-                <el-form-item label="身份证号:" prop="name">
+                <el-form-item label="身份证号:" prop="pIdentity">
                   {{addForm.pIdentity}}
                 </el-form-item>
-                <el-form-item label="户籍:" prop="price">
+                <el-form-item label="户籍:" prop="pResidence">
                   {{addForm.pResidence}}
                 </el-form-item>
-                <el-form-item label="邮箱:" prop="stock">
+                <el-form-item label="邮箱:" prop="pEmail">
                   {{addForm.pEmail}}
                 </el-form-item>
-                <el-form-item label="手机号:" prop="stock">
+                <el-form-item label="手机号:" prop="pPhone">
                   {{addForm.pPhone}}
                 </el-form-item>
-                <el-form-item label="微信号:" prop="stock">
+                <el-form-item label="微信号:" prop="pWeixinId">
                   {{addForm.pWeixinId}}
                 </el-form-item>
-                <el-form-item label="微信名:" prop="stock">
+                <el-form-item label="微信名:" prop="pWeixin">
                   {{addForm.pWeixin}}
                 </el-form-item>
-                <el-form-item label="qq账号:" prop="stock">
+                <el-form-item label="qq账号:" prop="pQq">
                   {{addForm.pQq}}
                 </el-form-item>
-                <el-form-item label="支付宝账号:" prop="stock">
+                <el-form-item label="支付宝账号:" prop="pZhifubao">
                   {{addForm.pZhifubao}}
                 </el-form-item>
-                <el-form-item label="基本信息备注:" prop="stock">
+                <el-form-item label="基本信息备注:" prop="pRemark">
                   {{addForm.pRemark}}
                 </el-form-item>
                 <!--<el-form-item label="园丁丁等级:" prop="stock">-->
@@ -158,9 +158,11 @@
           </el-table-column>
           <el-table-column align="center" prop="transferRecordPayFee" label="金额" width="150" sortable>
             <template slot-scope="scope">
-              <el-tag type="danger" v-if="scope.row.transferRecordPayFee>5000">{{scope.row.transferRecordPayFee}}
-              </el-tag>
-              <el-tag v-else>{{scope.row.transferRecordPayFee}}</el-tag>
+              <span class="text-red" v-if="scope.row.transferRecordPayFee>5000">{{scope.row.transferRecordPayFee}}</span>
+              <span class="text-blue" v-else>{{scope.row.transferRecordPayFee}}</span>
+              <!--<el-tag type="danger" v-if="scope.row.transferRecordPayFee>5000">{{scope.row.transferRecordPayFee}}-->
+              <!--</el-tag>-->
+              <!--<el-tag v-else>{{scope.row.transferRecordPayFee}}</el-tag>-->
             </template>
           </el-table-column>
           <el-table-column align="center" prop="transferRecordPayZhifubao" label="付款支付宝" width="150" sortable>
@@ -431,9 +433,10 @@
 
   .left-label {
     padding-right: 10px;
-
   }
-
+  .label-span + .label-span {
+    padding-left: 15px
+  }
   .zfb-box {
     .box-item {
       line-height: 30px;

@@ -24,7 +24,7 @@
       <el-table-column align="center" label="操作">
         <template slot-scope="scope">
           <el-button type="primary" size="small"
-                     @click="$router.push({path:'/personDetail?type=node',query:{name:scope.row.name}})">查看
+                     @click="$router.push({path:'/peopleList/personDetail?type=node',query:{name:scope.row.name}})">查看
           </el-button>
         </template>
       </el-table-column>

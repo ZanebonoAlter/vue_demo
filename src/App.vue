@@ -17,7 +17,12 @@ export default {
 </script>
 
 <style lang="scss">
-
+.text-red {
+  color: #f56c6c
+}
+.text-blue {
+  color: #409EFF
+}
 body {
 	margin: 0px;
 	padding: 0px;

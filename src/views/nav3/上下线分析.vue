@@ -1,52 +1,34 @@
 <template>
   <section>
-    <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="100px" class="person-wrap">
+    <el-form :model="person" ref="personValidateForm" label-width="110px" class="person-wrap">
       <el-form-item
-        v-for="(domain, index) in dynamicValidateForm.domains"
-        :label="'重点人员' + Number(index + 1)"
-        :key="domain.key"
-        :prop="'domains.' + index + '.pName'"
+        :label="'重点人员姓名'"
+        prop="pName"
         :rules="{
       required: true, message: '重点人员姓名不能为空', trigger: 'blur'
     }"
       >
-        <el-input placeholder="请输入重点人员姓名" class="person-input" v-model="domain.pName"></el-input>
-        <span class="del-btn" @click.prevent="removeDomain(domain)">点击删除</span>
-        <!--<el-button @click.prevent="removeDomain(domain)">删除</el-button>-->
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('dynamicValidateForm')">筛选</el-button>
-        <el-button @click="addDomain">新增重点人员</el-button>
+        <el-input placeholder="请输入重点人员姓名" class="person-input" v-model="person.pName"></el-input>
+        <el-button @click.prevent="addMainPerson('personValidateForm')">新增重点人员</el-button>
+        <el-button type="primary" @click="submitForm">筛选</el-button>
+        <el-button type="primary" @click="resetSubmit">重置</el-button>
       </el-form-item>
     </el-form>
-    <div class="person-list-wrap" v-if="dynamicValidateForm.domains.length">
+    <div class="person-list-wrap" v-if="checkList.length">
       <div class="person-list-title">重点人员列表：</div>
-      <el-tag
-        v-if="tag.pName"
-        class="list-item"
-        v-for="tag in dynamicValidateForm.domains"
-        :key="tag.name"
-        closable
-        @close="removeDomain(tag)"
-        :type="tag.type">
-        {{tag.pName}}
-      </el-tag>
+      <div class="person-list-box">
+        <el-tag
+          v-if="tag.pName"
+          class="list-item"
+          v-for="tag in checkList"
+          :key="tag.name"
+          closable
+          @close="removeMainPerson(tag)"
+          :type="tag.type">
+          {{tag.pName}}
+        </el-tag>
+      </div>
     </div>
-    <!--<div>-->
-      <!--<el-input-->
-        <!--type="textarea"-->
-        <!--:rows="5"-->
-        <!--placeholder="请输入筛选内容,空格分隔"-->
-        <!--v-model="textarea">-->
-      <!--</el-input>-->
-      <!--<el-checkbox-group-->
-        <!--class="check-area"-->
-        <!--v-model="checkedList"-->
-      <!--&gt;-->
-        <!--<el-checkbox v-for="object in checkList" :label="object.pName" :key="object.pId">{{object.pName}}</el-checkbox>-->
-      <!--</el-checkbox-group>-->
-    <!--</div>-->
-    <!--工具条-->
     <el-col :span="24" class="toolbar" style="padding-bottom: 0">
       <el-form :inline="true" :model="filters">
         <el-form-item>
@@ -134,19 +116,16 @@
   export default {
     computed: {
       checkedList () {
-        return this.dynamicValidateForm.domains.map(v => v.pName)
+        return this.checkList.map(v => v.pName)
       }
     },
     data () {
       return {
-        options: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-        dynamicValidateForm: {
-          domains: [{
-            pName: ''
-          }]
+        person: {
+          pName: ''
         },
+        options: [1, 2, 3, 4, 5, 6, 7, 8, 9],
         checkList: [],
-        textarea: '',
         filters: {
           number: 1,
           count: 0,
@@ -356,9 +335,11 @@
           }
         })
       },
-      submitForm(formName) {
+      addMainPerson (formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
+            this.checkList.push(this.person)
+            this.person = { pName: '' }
             if (this.checkedList.length) {
               this.fetchData()
             } else {
@@ -373,16 +354,25 @@
           }
         })
       },
-      addDomain() {
-        this.dynamicValidateForm.domains.push({
-          pName: '',
-          key: Date.now()
-        });
+      async resetSubmit () {
+        await this.init_list()
+        this.fetchData()
       },
-      removeDomain(item) {
-        var index = this.dynamicValidateForm.domains.indexOf(item)
+      submitForm() {
+        if (this.checkedList.length) {
+          this.fetchData()
+        } else {
+          this.$message({
+            message: '请先新增重点人员',
+            type: 'warning'
+          })
+        }
+      },
+      removeMainPerson(item) {
+        var index = this.checkList.indexOf(item)
         if (index !== -1) {
-          this.dynamicValidateForm.domains.splice(index, 1)
+          this.checkList.splice(index, 1)
+          this.fetchData()
         }
       },
       fetchData () {
@@ -523,14 +513,17 @@
     padding: 10px 0 20px 0;
   }
   .person-list-wrap {
-    padding: 10px;
-    border: solid 1px red;
+    border: solid 1px #d3dce6;
     border-radius: 4px;
     .person-list-title {
-      padding-bottom: 10px;
+      padding: 10px;
+      background-color: #d3dce6;
     }
-    .list-item + .list-item {
-      margin-left: 5px;
+    .person-list-box {
+      padding: 10px;
+    }
+    .list-item {
+      margin-right: 5px;
     }
   }
   .chart-wrap {

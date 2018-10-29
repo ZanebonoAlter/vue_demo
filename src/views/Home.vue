@@ -8,7 +8,7 @@
         <img v-if="collapsed" class="header-logo collapsed" src="../assets/login/logo-logo.svg" alt="">
         <span v-else
               :class="{'header-notCollapsed': !collapsed}"><img class="header-logo" src="../assets/login/logo-logo.svg"
-                                                  alt=""><span>虫洞
+                                                                alt=""><span>虫洞
         </span></span>
       </el-col>
       <el-col :span="10">
@@ -84,7 +84,9 @@
           </el-col>
           <el-col :span="24" class="content-wrapper">
             <transition name="fade" mode="out-in">
-              <router-view></router-view>
+              <navigation>
+                <router-view></router-view>
+              </navigation>
             </transition>
           </el-col>
         </div>
@@ -149,7 +151,7 @@
       }
     },
     mounted () {
-
+      console.log('$route', this.$route)
 
     }
   }
@@ -289,21 +291,25 @@
       }
     }
   }
+
   .header-logo {
     width: 30px;
     height: auto;
   }
+
   .header-notCollapsed {
     > img {
       vertical-align: middle;
       margin-right: 10px;
     }
   }
+
   .user-title {
     color: #ffffff;
     cursor: pointer;
     display: block;
   }
+
   .el-menu-vertical-demo {
     width: auto !important;
   }
