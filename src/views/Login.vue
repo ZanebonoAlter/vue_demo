@@ -70,7 +70,12 @@
 //                      this.$message.error(res.data.message);
 //                  }
 //              })
-            this.$router.push({path: '/keyPerson'});
+              getData.Login(aAccount,aPassword).then(res=>{
+                  if(res.data.code==1)
+                      this.$router.push({path: '/keyPerson'});
+                  else
+                      this.$message.error('登录失败');
+              })
 //            this.$router.push({ path: '/table' });
           } else {
             console.log('error submit!!');

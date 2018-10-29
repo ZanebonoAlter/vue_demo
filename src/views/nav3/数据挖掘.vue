@@ -100,166 +100,184 @@
         sels: [],//列表选中列
         searchName: '',
         isTwo: false,
-        option: {
-          title: {
-            text: '资金流总览',
-            subtext: 'Circular layout',
-            top: 'bottom',
-            left: 'right'
-          },
-          tooltip: {},
-          legend: [{
-            // selectedMode: 'single',
-            data: [{name: '重点人员'}, {name: '嫌疑人'}, {name: '非嫌疑人'}]
-          }],
-          animationDurationUpdate: 1500,
-          animationEasingUpdate: 'quinticInOut',
-          series: [
-            {
-              tooltip: {},
-              name: 'Person',
-              type: 'graph',
-              layout: 'circular',
-              circular: {
-                rotateLabel: true
+          option: {
+              title: {
+                  text: '关系总览',
+                  subtext: 'Circular layout',
+                  top: 'bottom',
+                  left: 'right'
               },
-              focusNodeAdjacency: true,
-              data: [{
-                name: '郭燕',
-                value: 0,
-                symbolSize: 100,
-                category: 0,
-                label: {
-                  normal: {
-                    show: true,
-                    position: ['50%', '50%'],
-                    formatter: '郭燕',
-                    fontSize: 20
-                  }
-                },
-                tooltip: {
-                  trigger: 'item',
-                  textStyle: {
-                    align: 'left'
-                  },
-                  formatter: '姓名:郭燕\n支付宝：549455722@qq.com\n支付宝ID:2088902744752620',
-                  extraCssText: ' white-space:pre-wrap'
-                },
-              }, {
-                name: '郑宇',
-                value: 0,
-                symbolSize: 30,
-                category: 0,
-                label: {
-                  normal: {
-                    show: true,
-                    position: 'top',
-                    formatter: '郑宇'
-                  }
-                },
-                tooltip: {
-                  trigger: 'item',
-                  textStyle: {
-                    align: 'left'
-                  },
-                  formatter: '姓名:郑宇\n支付宝：549455722@qq.com\n支付宝ID:2088902744752620',
-                  extraCssText: ' white-space:pre-wrap'
-                },
-              }, {
-                name: '潘文水',
-                value: 0,
-                symbolSize: 100,
-                category: 2,
-                label: {
-                  normal: {
-                    show: true,
-                    position: 'top',
-                    formatter: '潘文水'
-                  }
-                },
-                tooltip: {
-                  trigger: 'item',
-                  textStyle: {
-                    align: 'left'
-                  },
-                  formatter: '姓名:潘文水\n支付宝：549455722@qq.com\n支付宝ID:2088902744752620',
-                  extraCssText: ' white-space:pre-wrap'
-                },
+              tooltip: {},
+              legend: [{
+                  // selectedMode: 'single',
+                  data: [{name: '重点人员'}, {name: '嫌疑人'}, {name: '非嫌疑人'}]
               }],
-              links: [{
-                source: "郑宇",
-                target: "郑宇",
-                label: {                // 关系对象上的标签
-                  normal: {
-                    show: true,                 // 是否显示标签
-                    position: "middle",         // 标签位置:'top''left''right''bottom''inside''insideLeft''insideRight''insideTop''insideBottom''insideTopLeft''insideBottomLeft''insideTopRight''insideBottomRight'
-                    textStyle: {                // 文本样式
-                      fontSize: 16
-                    },
-                    formatter: "100",
-                  }
-                },
-                symbol: ['circle', 'arrow'],
-              }, {
-                source: "潘文水",
-                target: "郑宇",
-                label: {                // 关系对象上的标签
-                  normal: {
-                    show: true,                 // 是否显示标签
-                    position: "middle",         // 标签位置:'top''left''right''bottom''inside''insideLeft''insideRight''insideTop''insideBottom''insideTopLeft''insideBottomLeft''insideTopRight''insideBottomRight'
-                    textStyle: {                // 文本样式
-                      fontSize: 16
-                    },
-                    formatter: "500",
-                  }
-                },
-                lineStyle: {
-                  normal: {
-                    width: 5,
-                  }
-                },
-                symbol: ['circle', 'arrow'],
-              }, {
-                source: "郭燕",
-                target: "郑宇",
-                label: {                // 关系对象上的标签
-                  normal: {
-                    show: true,                 // 是否显示标签
-                    position: "middle",         // 标签位置:'top''left''right''bottom''inside''insideLeft''insideRight''insideTop''insideBottom''insideTopLeft''insideBottomLeft''insideTopRight''insideBottomRight'
-                    textStyle: {                // 文本样式
-                      fontSize: 16
-                    },
-                    formatter: "100",
-                  }
-                },
-                symbol: ['circle', 'arrow'],
-              }],
-              categories: [{
-                "name": "重点人员",//关系网名称
-              }
-                , {
-                  "name": "嫌疑人",//关系网名称
-                }
-                , {
-                  "name": "非嫌疑人",//关系网名称
-                }
-              ],
-              roam: true,
+              animationDurationUpdate: 1500,
+              animationEasingUpdate: 'quinticInOut',
+              series: [
+                  {
+                      tooltip: {},
+                      name: 'Person',
+                      type: 'graph',
+                      layout: 'force',
+//              circular: {
+//                rotateLabel: true
+//              },
+                      force:{
+                          initLayout:'circular',
+                          repulsion:10000
+                      },
+                      focusNodeAdjacency: true,
+                      itemStyle: {
+                          normal: {
+                              borderColor: '#fff',
+                              borderWidth: 1,
+                              shadowBlur: 10,
+                              shadowColor: 'rgba(0, 0, 0, 0.3)'
+                          }
+                      },
+                      data: [{
+                          name: '郭燕',
+                          value: 0,
+                          symbolSize: 100,
+                          category: 0,
+                          label: {
+                              normal: {
+                                  show: true,
+                                  position: ['50%', '50%'],
+                                  formatter: '郭燕',
+                                  fontSize: 20
+                              }
+                          },
+                          tooltip: {
+                              trigger: 'item',
+                              textStyle: {
+                                  align: 'left'
+                              },
+                              formatter: '姓名:郭燕\n支付宝：549455722@qq.com\n支付宝ID:2088902744752620',
+                              extraCssText: ' white-space:pre-wrap'
+                          },
+                      }, {
+                          name: '郑宇',
+                          value: 0,
+                          symbolSize: 30,
+                          category: 0,
+                          label: {
+                              normal: {
+                                  show: true,
+                                  position: 'top',
+                                  formatter: '郑宇'
+                              }
+                          },
+                          tooltip: {
+                              trigger: 'item',
+                              textStyle: {
+                                  align: 'left'
+                              },
+                              formatter: '姓名:郑宇\n支付宝：549455722@qq.com\n支付宝ID:2088902744752620',
+                              extraCssText: ' white-space:pre-wrap'
+                          },
+                      }, {
+                          name: '潘文水',
+                          value: 0,
+                          symbolSize: 100,
+                          category: 2,
+                          label: {
+                              normal: {
+                                  show: true,
+                                  position: 'top',
+                                  formatter: '潘文水'
+                              }
+                          },
+                          tooltip: {
+                              trigger: 'item',
+                              textStyle: {
+                                  align: 'left'
+                              },
+                              formatter: '姓名:潘文水\n支付宝：549455722@qq.com\n支付宝ID:2088902744752620',
+                              extraCssText: ' white-space:pre-wrap'
+                          },
+                      }],
+                      links: [{
+                          source: "郑宇",
+                          target: "郑宇",
+                          label: {                // 关系对象上的标签
+                              normal: {
+                                  show: true,                 // 是否显示标签
+                                  position: "middle",         // 标签位置:'top''left''right''bottom''inside''insideLeft''insideRight''insideTop''insideBottom''insideTopLeft''insideBottomLeft''insideTopRight''insideBottomRight'
+                                  textStyle: {                // 文本样式
+                                      fontSize: 16
+                                  },
+                                  formatter: "100",
+                              }
+                          },
+                          symbol: ['circle', 'arrow'],
+                      }, {
+                          source: "潘文水",
+                          target: "郑宇",
+                          label: {                // 关系对象上的标签
+                              normal: {
+                                  show: true,                 // 是否显示标签
+                                  position: "middle",         // 标签位置:'top''left''right''bottom''inside''insideLeft''insideRight''insideTop''insideBottom''insideTopLeft''insideBottomLeft''insideTopRight''insideBottomRight'
+                                  textStyle: {                // 文本样式
+                                      fontSize: 16
+                                  },
+                                  formatter: "500",
+                              }
+                          },
+                          lineStyle: {
+                              normal: {
+                                  width: 5,
+                              }
+                          },
+                          symbol: ['circle', 'arrow'],
+                      }, {
+                          source: "郭燕",
+                          target: "郑宇",
+                          label: {                // 关系对象上的标签
+                              normal: {
+                                  show: true,                 // 是否显示标签
+                                  position: "middle",         // 标签位置:'top''left''right''bottom''inside''insideLeft''insideRight''insideTop''insideBottom''insideTopLeft''insideBottomLeft''insideTopRight''insideBottomRight'
+                                  textStyle: {                // 文本样式
+                                      fontSize: 16
+                                  },
+                                  formatter: "100",
+                              }
+                          },
+                          symbol: ['circle', 'arrow'],
+                      }],
+                      categories: [{
+                          "name": "重点人员",//关系网名称
+                      }
+                          , {
+                              "name": "嫌疑人",//关系网名称
+                          }
+                          , {
+                              "name": "非嫌疑人",//关系网名称
+                          }
+                      ],
+                      roam: true,
 //                            label: {
 //                                normal: {
 //                                    position: 'right',
 //                                    formatter: '{b}'
 //                                }
 //                            },
-              lineStyle: {
-                normal: {
-                  color: 'source',
-                  curveness: 0.3
-                }
-              }
-            }
-          ]
-        },
+                      lineStyle: {
+                          normal: {
+                              color: 'source',
+                              curveness: 0.3
+                          }
+                      },
+                      emphasis: {
+                          lineStyle: {
+                              width: 10
+                          }
+                      }
+
+                  }
+              ]
+          },
       }
     },
     mounted () {
@@ -294,6 +312,59 @@
           })
         }
         myChart.hideLoading();
+          var all = this;
+          myChart.on('click',function (params) {
+              console.log(params);
+              console.log(all)
+              //window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.data.label.normal.formatter));
+              if (params.dataType == "node") {
+                  all.$confirm('请确认接下来的操作', '确认信息', {
+                      distinguishCancelAndClose: true,
+                      showClose:false,
+                      confirmButtonText: '展开相关节点',
+                      cancelButtonText: '查看个人信息'
+                  }).then(() => {
+                      if(params.data.extend==0){
+                          var str = params.data.flag;
+                          var level=0;
+                          console.log(str)
+                          if(str!=0){
+                              level = str.split(",")[0];
+                              console.log(level)
+                          }
+
+                          getData.Extend_Graph(params.data.name,level).then(res=>{
+                              for(var i=0;i<res.data.graph.data.length;i++){
+                                  var flag=0;
+                                  for(var j=0;j<all.option.series[0].data.length;j++){
+                                      if(all.option.series[0].data[j].name==res.data.graph.data[i].name){
+                                          flag=1;
+                                          break;
+                                      }
+                                  }
+                                  if(flag==0)
+                                      all.option.series[0].data.push(res.data.graph.data[i])
+                              }
+                              for(var i=0;i<res.data.graph.links.length;i++){
+                                  all.option.series[0].links.push(res.data.graph.links[i])
+                              }
+                              console.log(all.option);
+                              myChart.setOption(all.option, true);
+                          })
+                          params.data.extend=1
+                      }else{
+
+                      }
+                  }).catch(action => {
+                      all.$router.push({path:'/personDetail',query:{type:"node",name:params.name}})
+                  });
+//              window.location = '#/personDetail?type=node&name=' + params.name;
+//                            this.$router.push({path:'/personDetail',query:{type:"node",name:params.name}})
+              } else if (params.dataType == "edge") {
+                  all.$router.push({path:'/personDetail',query:{type:"edge",name1:params.data.source,name2:params.data.target}})
+//                            this.$router.push({path:'/personDetail',query:{type:"edge",name1:params.data.source,name2:params.data.target}})
+              }
+          })
       }
     }
   }

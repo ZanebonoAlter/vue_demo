@@ -17,6 +17,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm('dynamicValidateForm')">筛选</el-button>
+        <el-button type="primary" @click="submitForm('dynamicValidateForm')">重置</el-button>
         <el-button @click="addDomain">新增重点人员</el-button>
       </el-form-item>
     </el-form>
@@ -73,7 +74,7 @@
         },
         option: {
           title: {
-            text: '资金流总览',
+            text: '关系总览',
             subtext: 'Circular layout',
             top: 'bottom',
             left: 'right'
@@ -90,11 +91,23 @@
               tooltip: {},
               name: 'Person',
               type: 'graph',
-              layout: 'circular',
-              circular: {
-                rotateLabel: true
-              },
+              layout: 'force',
+//              circular: {
+//                rotateLabel: true
+//              },
+               force:{
+                  initLayout:'circular',
+                   repulsion:10000
+               },
               focusNodeAdjacency: true,
+                itemStyle: {
+                    normal: {
+                        borderColor: '#fff',
+                        borderWidth: 1,
+                        shadowBlur: 10,
+                        shadowColor: 'rgba(0, 0, 0, 0.3)'
+                    }
+                },
               data: [{
                 name: '郭燕',
                 value: 0,
@@ -227,7 +240,13 @@
                   color: 'source',
                   curveness: 0.3
                 }
+              },
+              emphasis: {
+                  lineStyle: {
+                      width: 10
+                  }
               }
+
             }
           ]
         },
@@ -293,14 +312,56 @@
           console.log(this.option)
           myChart.setOption(this.option, true);
           myChart.hideLoading();
-          myChart.on('click', function (params) {
-            console.log(params)
+          var all = this;
+          myChart.on('click',function (params) {
+            console.log(params);
+            console.log(all)
             //window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.data.label.normal.formatter));
             if (params.dataType == "node") {
-              window.location = '#/personDetail?type=node&name=' + params.name;
+                all.$confirm('请确认接下来的操作', '确认信息', {
+                    distinguishCancelAndClose: true,
+                    showClose:false,
+                    confirmButtonText: '展开相关节点',
+                    cancelButtonText: '查看个人信息'
+                }).then(() => {
+                    if(params.data.extend==0){
+                        var str = params.data.flag;
+                        var level=0;
+                        console.log(str)
+                        if(str!=0){
+                            level = str.split(",")[0];
+                            console.log(level)
+                        }
+
+                        getData.Extend_Graph(params.data.name,level).then(res=>{
+                            for(var i=0;i<res.data.graph.data.length;i++){
+                                var flag=0;
+                                for(var j=0;j<all.option.series[0].data.length;j++){
+                                    if(all.option.series[0].data[j].name==res.data.graph.data[i].name){
+                                        flag=1;
+                                        break;
+                                    }
+                                }
+                                if(flag==0)
+                                    all.option.series[0].data.push(res.data.graph.data[i])
+                            }
+                            for(var i=0;i<res.data.graph.links.length;i++){
+                                all.option.series[0].links.push(res.data.graph.links[i])
+                            }
+                            console.log(all.option);
+                            myChart.setOption(all.option, true);
+                        })
+                        params.data.extend=1
+                    }else{
+
+                    }
+                }).catch(action => {
+                    all.$router.push({path:'/personDetail',query:{type:"node",name:params.name}})
+                    });
+//              window.location = '#/personDetail?type=node&name=' + params.name;
 //                            this.$router.push({path:'/personDetail',query:{type:"node",name:params.name}})
             } else if (params.dataType == "edge") {
-              window.location = '#/peopleDetail?type=edge&name1=' + params.data.source + '&name2=' + params.data.target;
+                  all.$router.push({path:'/personDetail',query:{type:"edge",name1:params.data.source,name2:params.data.target}})
 //                            this.$router.push({path:'/personDetail',query:{type:"edge",name1:params.data.source,name2:params.data.target}})
             }
           })
@@ -315,7 +376,7 @@
             this.checkedList[i] = this.checkList[i].pName;
           }
         })
-      }
+      },
     }
   }
 

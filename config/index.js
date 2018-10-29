@@ -29,7 +29,7 @@ module.exports = {
     assetsPublicPath: '/',
 	  proxyTable: {
 		  '/back': {
-			  target: 'http://zanebono.s1.natapp.cc/',//http://www.hpaxcf.com/
+			  target: 'http://localhost:8080/',//http://www.hpaxcf.com/
 			  changeOrigin: true,
 			  pathRewrite: {
 				  '^/back': '/judge'
