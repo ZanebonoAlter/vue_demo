@@ -18,6 +18,12 @@
 </script>
 
 <style lang="scss">
+  #container {
+    padding-top: 20px;
+    border: 1px solid #d3dce6;
+    border-radius: 4px;
+    margin: 20px 0;
+  }
   .text-red {
     color: #f56c6c
   }

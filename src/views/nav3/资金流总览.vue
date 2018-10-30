@@ -30,7 +30,7 @@
           </el-tag>
         </div>
       </div>
-      <div class="chart-wrap" id="container" style="height: 1080px;width: 100%;border: 5px solid grey;"></div>
+      <div v-if="showChart" class="chart-wrap" id="container" style="height: 1080px;width: 100%"></div>
     </sub-view>
   </section>
 </template>
@@ -50,6 +50,7 @@
     },
     data () {
       return {
+        showChart: false,
         checkList: [],
         person: {
           pName: ''
@@ -262,11 +263,13 @@
         })
       },
       async resetSubmit () {
+        this.showChart = true
         await this.init_list()
         this.init()
       },
       submitForm () {
         if (this.checkedList.length) {
+          this.showChart = true
           this.init()
         } else {
           this.$message({
@@ -283,6 +286,7 @@
         }
       },
       init (res) {
+        this.showChart = true
         var echarts = require('echarts');
         var dom = document.getElementById("container");
         var myChart = echarts.init(dom);
@@ -371,6 +375,7 @@
         handler (val, oldVal) {
           const crashStorage = this.$session.get('crashStorage')
           if (crashStorage) {
+            this.showChart = true
             this.checkList = crashStorage.checkList
             this.$nextTick(() => {
               this.init()

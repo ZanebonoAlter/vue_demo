@@ -97,7 +97,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <div class="chart-wrap" id="container" style="height: 1080px;width: 100%;border: 5px solid grey;"></div>
+      <div v-if="showChart" class="chart-wrap" id="container" style="height: 1080px;width: 100%;"></div>
     </sub-view>
   </section>
 </template>
@@ -125,6 +125,7 @@
     },
     data () {
       return {
+        showChart: false,
         person: {
           pName: ''
         },
@@ -376,6 +377,7 @@
         }
       },
       fetchData () {
+        this.showChart = true
         let params = {
           custom: this.checkedList,
           number: this.filters.number
@@ -504,6 +506,7 @@
         handler (val, oldVal) {
           const listStorage = this.$session.get('listStorage')
           if (listStorage) {
+            this.showChart = true
             this.checkList = listStorage.checkList
             this.filters.number = listStorage.number
             this.isTwo = listStorage.isTwo
