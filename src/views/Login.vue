@@ -18,7 +18,7 @@
         <el-input class="input" type="password" v-model="ruleForm2.checkPass" auto-complete="off"
                   placeholder="密码"></el-input>
       </el-form-item>
-      <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
+      <!--<el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>-->
       <el-form-item class="form-footer" style="width:100%;">
         <el-button type="primary" class="btn btn-login" @click.native.prevent="handleSubmit2" :loading="logining">登录
         </el-button>
@@ -38,8 +38,8 @@
       return {
         logining: false,
         ruleForm2: {
-          account: 'admin',
-          checkPass: 'Baian123456'
+          account: '',
+          checkPass: ''
         },
         rules2: {
           account: [

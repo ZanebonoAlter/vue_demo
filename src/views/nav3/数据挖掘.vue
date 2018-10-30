@@ -68,7 +68,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <div class="chart-wrap" id="container" style="height: 1080px;width: 100%"></div>
+      <div class="chart-wrap" id="container" style="height: 1080px;width: 100%;border: 5px solid grey;"></div>
     </sub-view>
   </section>
 </template>
@@ -362,18 +362,20 @@
 
               }
             }).catch(action => {
-                // let {href} = all.$router.resolve({path: '/crashAnalysis/personDetail', query: {type: "node", name: params.name}});
-                // window.open(href, '_blank');
-              all.$router.push({path: '/crashAnalysis/personDetail', query: {type: "node", name: params.name}})
+                 let {href} = all.$router.resolve({path: '/crashAnalysis/personDetail', query: {type: "node", name: params.name}});
+                 window.open(href, '_blank');
+//              all.$router.push({path: '/crashAnalysis/personDetail', query: {type: "node", name: params.name}})
 //              all.$router.push({path: '/crashAnalysis/personDetail', query: {type: "node", name: params.name}})
             });
 //              window.location = '#/personDetail?type=node&name=' + params.name;
 //                            this.$router.push({path:'/personDetail',query:{type:"node",name:params.name}})
           } else if (params.dataType == "edge") {
-            all.$router.push({
-              path: '/crashAnalysis/peopleDetail',
-              query: {type: "edge", name1: params.data.source, name2: params.data.target}
-            })
+              let {href} = all.$router.resolve({path: '/crashAnalysis/peopleDetail', query: {type: "edge", name1: params.data.source, name2: params.data.target}});
+              window.open(href, '_blank');
+//            all.$router.push({
+//              path: '/crashAnalysis/peopleDetail',
+//              query: {type: "edge", name1: params.data.source, name2: params.data.target}
+//            })
 //                            this.$router.push({path:'/personDetail',query:{type:"edge",name1:params.data.source,name2:params.data.target}})
           }
         })
