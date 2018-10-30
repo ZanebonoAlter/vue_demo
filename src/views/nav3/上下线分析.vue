@@ -63,7 +63,7 @@
         <el-table-column align="center" label="操作">
           <template slot-scope="scope">
             <el-button type="primary" size="small"
-                       @click="$router.push({path:'/personDetail?type=node',query:{name:scope.row.nodeName}})">查看
+                       @click="$router.push({path:'/lineAnalysis/personDetail?type=node',query:{name:scope.row.nodeName}})">查看
             </el-button>
             <!--<el-button type="danger" size="medium" @click="updateState(scope.row.bookId,0)" >删除</el-button>-->
           </template>
@@ -77,7 +77,7 @@
         <el-table-column align="center" label="操作">
           <template slot-scope="scope">
             <el-button type="primary" size="small"
-                       @click="$router.push({path:'/personDetail?type=node',query:{name:scope.row.nodeName}})">查看
+                       @click="$router.push({path:'/lineAnalysis/personDetail?type=node',query:{name:scope.row.nodeName}})">查看
             </el-button>
             <!--<el-button type="danger" size="medium" @click="updateState(scope.row.bookId,0)" >删除</el-button>-->
           </template>
@@ -91,7 +91,7 @@
         <el-table-column align="center" label="操作">
           <template slot-scope="scope">
             <el-button type="primary" size="small"
-                       @click="$router.push({path:'/personDetail?type=node',query:{name:scope.row.nodeName}})">查看
+                       @click="$router.push({path:'/lineAnalysis/personDetail?type=node',query:{name:scope.row.nodeName}})">查看
             </el-button>
             <!--<el-button type="danger" size="medium" @click="updateState(scope.row.bookId,0)" >删除</el-button>-->
           </template>
@@ -453,14 +453,15 @@
 
               }
             }).catch(action => {
-                let {href} = all.$router.resolve({path: '/crashAnalysis/personDetail', query: {type: "node", name: params.name}});
+                let {href} = all.$router.resolve({path: '/lineAnalysis/personDetail', query: {type: "node", name: params.name}});
                 window.open(href, '_blank');
             });
 //              window.location = '#/personDetail?type=node&name=' + params.name;
 //                            this.$router.push({path:'/personDetail',query:{type:"node",name:params.name}})
           } else if (params.dataType == "edge") {
+            console.log('dfdfdfdfd')
             all.$router.push({
-              path: '/lineAnalysis/personDetail',
+              path: '/lineAnalysis/peopleDetail',
               query: {type: "edge", name1: params.data.source, name2: params.data.target}
             })
 //                            this.$router.push({path:'/personDetail',query:{type:"edge",name1:params.data.source,name2:params.data.target}})

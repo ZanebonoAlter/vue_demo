@@ -370,7 +370,7 @@
 //                            this.$router.push({path:'/personDetail',query:{type:"node",name:params.name}})
           } else if (params.dataType == "edge") {
             all.$router.push({
-              path: '/crashAnalysis/personDetail',
+              path: '/crashAnalysis/peopleDetail',
               query: {type: "edge", name1: params.data.source, name2: params.data.target}
             })
 //                            this.$router.push({path:'/personDetail',query:{type:"edge",name1:params.data.source,name2:params.data.target}})

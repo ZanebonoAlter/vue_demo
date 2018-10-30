@@ -37,13 +37,13 @@
           <!--&& $checkPermissions(item.permission)-->
           <template v-for="(item,index) in $router.options.routes" v-if="!item.hidden ">
             <el-submenu :index="index+''" v-if="!item.leaf">
-              <template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
+              <template slot="title"><i :class="item.iconCls"></i>{{item.meta.title}}</template>
               <el-menu-item v-for="child in item.children" :index="child.path" :key="child.path" v-if="!child.hidden">
-                {{child.name}}
+                {{child.meta.title}}
               </el-menu-item>
             </el-submenu>
             <el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path"><i
-              :class="item.iconCls"></i>{{item.children[0].name}}
+              :class="item.iconCls"></i>{{item.children[0].meta.title}}
             </el-menu-item>
           </template>
         </el-menu>
@@ -57,7 +57,7 @@
                    @mouseout="showMenu(index,false)">
                 <div v-for="child in item.children" v-if="!child.hidden " :key="child.path" class="el-menu-item"
                      style="padding-left: 40px;" :class="$route.path==child.path?'is-active':''"
-                     @click="$router.push(child.path)">{{child.name}}
+                     @click="$router.push(child.path)">{{child.meta.title}}
                 </div>
               </div>
             </template>

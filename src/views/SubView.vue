@@ -13,7 +13,7 @@
   export default {
     computed: {
       show () {
-        return this.$route.matched[1].name === this.$route.name
+        return this.$route.matched[1].meta.title === this.$route.meta.title
       }
     },
     created () {

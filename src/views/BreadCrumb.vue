@@ -5,8 +5,9 @@
         <!--<span v-if="index==levelList.length-1" class="no-redirect">{{item.name}}</span>-->
         <!--<router-link v-else :to="item.redirect||item.path">{{item.name}}</router-link>-->
       <!--</el-breadcrumb-item>-->
-      <el-breadcrumb-item v-for="(item,index)  in levelList" :key="item.path" v-if="item.name">
-        <router-link :to="item.redirect||item.path">{{item.name}}</router-link>
+      <el-breadcrumb-item v-for="(item,index)  in levelList" :key="item.path" v-if="item.meta.title">
+        <span v-if="item.path === ''">{{item.meta.title}}</span>
+        <router-link v-else :to="item.redirect||item.path">{{item.meta.title}}</router-link>
       </el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>
@@ -29,7 +30,7 @@ export default {
   },
   methods: {
     getBreadcrumb() {
-      const matched = this.$route.matched.filter(item => item.name)
+      const matched = this.$route.matched.filter(item => item.meta.title)
       //      const first = matched[0]
       //      if (first && first.name !== 'dashboard') {
       //        matched = [{ path: '/dashboard', meta: { title: '首页' }}].concat(matched)

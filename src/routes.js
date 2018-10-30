@@ -98,34 +98,44 @@ let routes = [
     path: '/',
     redirect: '/keyPerson',
     component: Home,
-    name: '人员档案',
+    meta: {
+      title: '人员档案'
+    },
     iconCls: 'el-icon-setting',
     hidden: false,
     children: [
       {
         path: '/peopleDetail',
         component: peopleDetail,
-        name: '人员相关记录',
+        meta: {
+          title: '人员相关记录'
+        },
         permission: 'peopleDetail1',
         hidden: true
       },
       {
         path: '/keyPerson',
         component: keyPerson,
-        name: '重点人管理',
+        meta: {
+          title: '重点人管理'
+        },
         permission: 'keyPerson',
         children: [
           {
             path: 'personDetail',
             component: personDetail,
-            name: '人员详情',
+            meta: {
+              title: '人员详情'
+            },
             permission: 'personDetail',
             hidden: true
           },
           {
             path: 'keyPersonEdit',
             component: keyPersonEdit,
-            name: '编辑重点人员',
+            meta: {
+              title: '编辑重点人员'
+            },
             permission: 'keyPersonEdit',
             hidden: true
           }
@@ -134,13 +144,17 @@ let routes = [
       {
         path: '/peopleList',
         component: peopleList,
-        name: '一人一档',
+        meta: {
+          title: '一人一档'
+        },
         permission: 'personDetail',
         children: [
           {
             path: 'personDetail',
             component: personDetail,
-            name: '人员详情',
+            meta: {
+              title: '人员详情'
+            },
             permission: 'personDetail',
             hidden: true
           }
@@ -149,7 +163,9 @@ let routes = [
       {
         path: '/duplicatePerson',
         component: duplicatePerson,
-        name: '多支付宝用户',
+        meta: {
+          title: '编辑重点人员'
+        },
         permission: 'duplicatePerson',
         children: [
           {
@@ -171,7 +187,9 @@ let routes = [
       {
         path: '/keyPersonEdit',
         component: keyPersonEdit,
-        name: '编辑重点人员',
+        meta: {
+          title: '编辑重点人员'
+        },
         permission: 'keyPersonEdit',
         hidden: true
       }
@@ -182,7 +200,9 @@ let routes = [
     path: '/',
     redirect: '/crashAdd',
     component: Home,
-    name: '资金往来',
+    meta: {
+      title: '资金往来'
+    },
     iconCls: 'el-icon-setting',
     hidden: false,
     children: [
@@ -190,14 +210,18 @@ let routes = [
       {
         path: '/crashAdd',
         component: crashAdd,
-        name: '流水导入',
+        meta: {
+          title: '流水导入'
+        },
         permission: 'crashAdd',
         hidden: false
       },
       {
         path: '/crashTable',
         component: crashTable,
-        name: '流水查询',
+        meta: {
+          title: '流水查询'
+        },
         permission: 'crashTable',
         hidden: false
       }
@@ -208,28 +232,36 @@ let routes = [
     path: '/',
     redirect: '/buyList',
     component: Home,
-    name: '线上购物',
+    meta: {
+      title: '线上购物'
+    },
     iconCls: 'el-icon-setting',
     hidden: false,
     children: [
       {
         path: '/buyDetail',
         component: AdminList,
-        name: '购买人分析',
+        meta: {
+          title: '购买人分析'
+        },
         permission: 'buyDetail',
         hidden: true
       },
       {
         path: '/buyList',
         component: buyList,
-        name: '购买记录查询',
+        meta: {
+          title: '购买记录查询'
+        },
         permission: 'buyList',
         hidden: false
       },
       {
         path: '/buyAdd',
         component: buyAdd,
-        name: '购买记录导入',
+        meta: {
+          title: '购买记录导入'
+        },
         permission: 'buyList',
         hidden: false
       }
@@ -240,7 +272,9 @@ let routes = [
     path: '/',
     redirect: '/crashList',
     component: Home,
-    name: '综合挖掘',
+    meta: {
+      title: '综合挖掘'
+    },
     iconCls: 'el-icon-setting',
     hidden: false,
     children: [
@@ -248,15 +282,28 @@ let routes = [
       {
         path: '/crashList',
         component: crashList,
-        name: '重点人员关系',
+        meta: {
+          title: '重点人员关系'
+        },
         permission: 'crashList',
         hidden: false,
         children: [
           {
             path: 'personDetail',
             component: personDetail,
-            name: '人员详情',
+            meta: {
+              title: '人员详情'
+            },
             permission: 'personDetail',
+            hidden: true
+          },
+          {
+            path: 'peopleDetail',
+            component: peopleDetail,
+            meta: {
+              title: '人员相关记录'
+            },
+            permission: 'peopleDetail1',
             hidden: true
           }
         ]
@@ -264,15 +311,28 @@ let routes = [
       {
         path: '/lineAnalysis',
         component: lineAnalysis,
-        name: '上下线分析',
+        meta: {
+          title: '上下线分析'
+        },
         permission: 'lineAnalysis',
         hidden: false,
         children: [
           {
             path: 'personDetail',
             component: personDetail,
-            name: '人员详情',
+            meta: {
+              title: '人员详情'
+            },
             permission: 'personDetail',
+            hidden: true
+          },
+          {
+            path: 'peopleDetail',
+            component: peopleDetail,
+            meta: {
+              title: '人员相关记录'
+            },
+            permission: 'peopleDetail1',
             hidden: true
           }
         ]
@@ -280,15 +340,28 @@ let routes = [
       {
         path: '/crashAnalysis',
         component: crashAnalysis,
-        name: '全网泛化扫描',
+        meta: {
+          title: '全网泛化扫描'
+        },
         permission: 'crashAnalysis',
         hidden: false,
         children: [
           {
             path: 'personDetail',
             component: personDetail,
-            name: '人员详情',
+            meta: {
+              title: '人员详情'
+            },
             permission: 'personDetail',
+            hidden: true
+          },
+          {
+            path: 'peopleDetail',
+            component: peopleDetail,
+            meta: {
+              title: '人员相关记录'
+            },
+            permission: 'peopleDetail1',
             hidden: true
           }
         ]
@@ -296,7 +369,9 @@ let routes = [
       {
         path: '/abnormalCapital',
         component: abnormalCapital,
-        name: '异常资金流',
+        meta: {
+          title: '异常资金流'
+        },
         permission: 'abnormalCapital',
         hidden: false
       }
