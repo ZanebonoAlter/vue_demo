@@ -279,7 +279,7 @@
         var index = this.checkList.indexOf(item)
         if (index !== -1) {
           this.checkList.splice(index, 1)
-          this.fetchData()
+          this.init()
         }
       },
       init (res) {
@@ -287,6 +287,7 @@
         var dom = document.getElementById("container");
         var myChart = echarts.init(dom);
         myChart.showLoading();
+        this.$session.set('crashStorage', {checkList: this.checkList})
         getData.queryGraph(this.checkedList).then(res => {
           this.option.series[0].data = res.data.graph.data;
           this.option.series[0].links = res.data.graph.links;
@@ -337,8 +338,9 @@
 
                 }
               }).catch(action => {
-                  let {href} = all.$router.resolve({path: '/crashList/personDetail', query: {type: "node", name: params.name}});
-                  window.open(href, '_blank');
+                  // let {href} = all.$router.resolve({path: '/crashList/personDetail', query: {type: "node", name: params.name}});
+                  // window.open(href, '_blank');
+                all.$router.push({path: '/crashList/personDetail', query: {type: "node", name: params.name}})
               });
 //              window.location = '#/personDetail?type=node&name=' + params.name;
 //                            this.$router.push({path:'/personDetail',query:{type:"node",name:params.name}})
@@ -361,6 +363,22 @@
           }
         })
       },
+    },
+    watch: {
+      '$route': {
+        handler (val, oldVal) {
+          const crashStorage = this.$session.get('crashStorage')
+          if (crashStorage) {
+            this.checkList = crashStorage.checkList
+            this.$nextTick(() => {
+              this.init()
+            })
+          } else {
+            this.init_list()
+          }
+        },
+        immediate: true
+      }
     }
   }
 

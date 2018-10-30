@@ -2,7 +2,7 @@
   <section>
     <sub-view>
       <!--工具条-->
-      <el-col :span="24" class="toolbar" style="padding-bottom: 0">
+      <el-col :span="24" class="toolbar" style="padding-bottom: 0;margin-top: 0;">
         <el-form :inline="true" :model="filters">
           <el-form-item>
             <el-switch
@@ -294,6 +294,7 @@
           num: this.filters.count,
           fee: this.filters.fee
         }
+        this.$session.set('netStorage', {count: this.filters.count, fee: this.filters.fee, isTwo: this.isTwo})
         var echarts = require('echarts');
         var dom = document.getElementById("container");
         var myChart = echarts.init(dom);
@@ -361,9 +362,9 @@
 
               }
             }).catch(action => {
-
-                let {href} = all.$router.resolve({path: '/crashAnalysis/personDetail', query: {type: "node", name: params.name}});
-                window.open(href, '_blank');
+                // let {href} = all.$router.resolve({path: '/crashAnalysis/personDetail', query: {type: "node", name: params.name}});
+                // window.open(href, '_blank');
+              all.$router.push({path: '/crashAnalysis/personDetail', query: {type: "node", name: params.name}})
 //              all.$router.push({path: '/crashAnalysis/personDetail', query: {type: "node", name: params.name}})
             });
 //              window.location = '#/personDetail?type=node&name=' + params.name;
@@ -376,6 +377,22 @@
 //                            this.$router.push({path:'/personDetail',query:{type:"edge",name1:params.data.source,name2:params.data.target}})
           }
         })
+      }
+    },
+    watch: {
+      '$route': {
+        handler (val, oldVal) {
+          const netStorage = this.$session.get('netStorage')
+          if (netStorage) {
+            this.filters.count = netStorage.count
+            this.filters.fee = netStorage.fee
+            this.isTwo = netStorage.isTwo
+            this.$nextTick(() => {
+              this.init()
+            })
+          }
+        },
+        immediate: true
       }
     }
   }

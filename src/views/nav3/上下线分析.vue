@@ -326,10 +326,6 @@
         },
       }
     },
-    mounted () {
-//		    this.init();
-      this.init_list();
-    },
     methods: {
       init_list () {
         getData.person_keyPerson().then(res => {
@@ -384,6 +380,7 @@
           custom: this.checkedList,
           number: this.filters.number
         }
+        this.$session.set('listStorage', {checkList: this.checkList, number: this.filters.number, isTwo: this.isTwo})
         if (!this.isTwo) {
           //  一层
           getData.queryGraphFirst(params.custom, params.number).then((res) => {
@@ -453,8 +450,9 @@
 
               }
             }).catch(action => {
-                let {href} = all.$router.resolve({path: '/lineAnalysis/personDetail', query: {type: "node", name: params.name}});
-                window.open(href, '_blank');
+            //     let {href} = all.$router.resolve({path: '/lineAnalysis/personDetail', query: {type: "node", name: params.name}});
+            //     window.open(href, '_blank');
+              all.$router.push({path: '/lineAnalysis/personDetail', query: {type: "node", name: params.name}})
             });
 //              window.location = '#/personDetail?type=node&name=' + params.name;
 //                            this.$router.push({path:'/personDetail',query:{type:"node",name:params.name}})
@@ -497,6 +495,25 @@
           })
         }
         myChart.hideLoading();
+      }
+    },
+    watch: {
+      '$route': {
+        handler (val, oldVal) {
+          const listStorage = this.$session.get('listStorage')
+          if (listStorage) {
+            this.checkList = listStorage.checkList
+            this.filters.number = listStorage.number
+            this.isTwo = listStorage.isTwo
+            console.log(11111)
+            this.$nextTick(() => {
+              this.fetchData()
+            })
+          } else {
+            this.init_list()
+          }
+        },
+        immediate: true
       }
     }
   }

@@ -11,6 +11,8 @@ import Vuex from 'vuex'
 //import 'nprogress/nprogress.css'
 import router from './routes'
 import 'font-awesome/css/font-awesome.min.css'
+import VueSessionStorage from 'vue-sessionstorage'
+Vue.use(VueSessionStorage)
 Vue.use(ElementUI)
 Vue.use(VueRouter)
 Vue.use(Vuex)
