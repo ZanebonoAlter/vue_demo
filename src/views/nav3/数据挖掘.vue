@@ -361,7 +361,10 @@
 
               }
             }).catch(action => {
-              all.$router.push({path: '/crashAnalysis/personDetail', query: {type: "node", name: params.name}})
+
+                let {href} = all.$router.resolve({path: '/crashAnalysis/personDetail', query: {type: "node", name: params.name}});
+                window.open(href, '_blank');
+//              all.$router.push({path: '/crashAnalysis/personDetail', query: {type: "node", name: params.name}})
             });
 //              window.location = '#/personDetail?type=node&name=' + params.name;
 //                            this.$router.push({path:'/personDetail',query:{type:"node",name:params.name}})
