@@ -57,7 +57,7 @@
                    @mouseout="showMenu(index,false)">
                 <div v-for="child in item.children" v-if="!child.hidden " :key="child.path" class="el-menu-item"
                      style="padding-left: 40px;" :class="$route.path==child.path?'is-active':''"
-                     @click="$router.push(child.path)">{{child.meta.title}}
+                     @click="goPage(child)">{{child.meta.title}}
                 </div>
               </div>
             </template>
@@ -118,6 +118,10 @@
       }
     },
     methods: {
+      goPage (child) {
+        this.$router.push(child.path)
+        this.$session.clear()
+      },
       onSubmit () {
         console.log('submit!');
       },
@@ -128,6 +132,7 @@
         //console.log('handleclose');
       },
       handleselect: function (a, b) {
+        this.$session.clear()
       },
       //退出登录
       logout: function () {
