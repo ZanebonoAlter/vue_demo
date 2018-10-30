@@ -287,68 +287,69 @@
       },
       init (res) {
         this.showChart = true
-        var echarts = require('echarts');
-        var dom = document.getElementById("container");
-        var myChart = echarts.init(dom);
-        myChart.showLoading();
-        this.$session.set('crashStorage', {checkList: this.checkList})
-        getData.queryGraph(this.checkedList).then(res => {
-          this.option.series[0].data = res.data.graph.data;
-          this.option.series[0].links = res.data.graph.links;
-          console.log(this.option)
-          myChart.setOption(this.option, true);
-          myChart.hideLoading();
-          var all = this;
-          myChart.on('click', function (params) {
-            console.log(params);
-            console.log(all)
-            //window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.data.label.normal.formatter));
-            if (params.dataType == "node") {
-              all.$confirm('请确认接下来的操作', '确认信息', {
-                distinguishCancelAndClose: true,
-                showClose: false,
-                confirmButtonText: '展开相关节点',
-                cancelButtonText: '查看个人信息'
-              }).then(() => {
-                if (params.data.extend == 0) {
-                  var str = params.data.flag;
-                  var level = 0;
-                  console.log(str)
-                  if (str != 0) {
-                    level = str.split(",")[0];
-                    console.log(level)
-                  }
+        this.$nextTick(() => {
+          var echarts = require('echarts');
+          var dom = document.getElementById("container");
+          var myChart = echarts.init(dom);
+          myChart.showLoading();
+          this.$session.set('crashStorage', {checkList: this.checkList})
+          getData.queryGraph(this.checkedList).then(res => {
+            this.option.series[0].data = res.data.graph.data;
+            this.option.series[0].links = res.data.graph.links;
+            console.log(this.option)
+            myChart.setOption(this.option, true);
+            myChart.hideLoading();
+            var all = this;
+            myChart.on('click', function (params) {
+              console.log(params);
+              console.log(all)
+              //window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.data.label.normal.formatter));
+              if (params.dataType == "node") {
+                all.$confirm('请确认接下来的操作', '确认信息', {
+                  distinguishCancelAndClose: true,
+                  showClose: false,
+                  confirmButtonText: '展开相关节点',
+                  cancelButtonText: '查看个人信息'
+                }).then(() => {
+                  if (params.data.extend == 0) {
+                    var str = params.data.flag;
+                    var level = 0;
+                    console.log(str)
+                    if (str != 0) {
+                      level = str.split(",")[0];
+                      console.log(level)
+                    }
 
-                  getData.Extend_Graph(params.data.name, level).then(res => {
-                    for (var i = 0; i < res.data.graph.data.length; i++) {
-                      var flag = 0;
-                      for (var j = 0; j < all.option.series[0].data.length; j++) {
-                        if (all.option.series[0].data[j].name == res.data.graph.data[i].name) {
-                          flag = 1;
-                          break;
+                    getData.Extend_Graph(params.data.name, level).then(res => {
+                      for (var i = 0; i < res.data.graph.data.length; i++) {
+                        var flag = 0;
+                        for (var j = 0; j < all.option.series[0].data.length; j++) {
+                          if (all.option.series[0].data[j].name == res.data.graph.data[i].name) {
+                            flag = 1;
+                            break;
+                          }
                         }
+                        if (flag == 0)
+                          all.option.series[0].data.push(res.data.graph.data[i])
                       }
-                      if (flag == 0)
-                        all.option.series[0].data.push(res.data.graph.data[i])
-                    }
-                    for (var i = 0; i < res.data.graph.links.length; i++) {
-                      all.option.series[0].links.push(res.data.graph.links[i])
-                    }
-                    console.log(all.option);
-                    myChart.setOption(all.option, true);
-                  })
-                  params.data.extend = 1
-                } else {
+                      for (var i = 0; i < res.data.graph.links.length; i++) {
+                        all.option.series[0].links.push(res.data.graph.links[i])
+                      }
+                      console.log(all.option);
+                      myChart.setOption(all.option, true);
+                    })
+                    params.data.extend = 1
+                  } else {
 
-                }
-              }).catch(action => {
-                   let {href} = all.$router.resolve({path: '/crashList/personDetail', query: {type: "node", name: params.name}});
-                   window.open(href, '_blank');
+                  }
+                }).catch(action => {
+                  let {href} = all.$router.resolve({path: '/crashList/personDetail', query: {type: "node", name: params.name}});
+                  window.open(href, '_blank');
 //                all.$router.push({path: '/crashList/personDetail', query: {type: "node", name: params.name}})
-              });
+                });
 //              window.location = '#/personDetail?type=node&name=' + params.name;
 //                            this.$router.push({path:'/personDetail',query:{type:"node",name:params.name}})
-            } else if (params.dataType == "edge") {
+              } else if (params.dataType == "edge") {
                 let {href} = all.$router.resolve({path: '/crashAnalysis/peopleDetail', query: {type: "edge", name1: params.data.source, name2: params.data.target}});
                 window.open(href, '_blank');
 //              all.$router.push({
@@ -356,7 +357,8 @@
 //                query: {type: "edge", name1: params.data.source, name2: params.data.target}
 //              })
 //                            this.$router.push({path:'/personDetail',query:{type:"edge",name1:params.data.source,name2:params.data.target}})
-            }
+              }
+            })
           })
         })
 
