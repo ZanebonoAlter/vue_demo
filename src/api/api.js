@@ -138,7 +138,7 @@ export const transferRecord = params =>{return axios.get('/back/transferrecord/c
 //获取当前购物记录数量
 export const buyRecord = params =>{return axios.get('/back/buyrecord/currentCount')}
 //获取有多个支付宝的用户列表
-export const getMuliZhifubao = params =>{return axios.get('/back/transferrecord/getMuliZhifubao')}
+export const getMuliZhifubao = params =>{return axios.get('/back/transferrecord/getMuliZhifubao',{ params: params })}
 // 查询指定日期内的时间，分页查询
 export const getDateFilter = (pageIndex,pageSize,query) =>{return axios.get('/back/transferrecord/queryDate/'+pageIndex+'/'+pageSize+'/'+query)}
 //查询指定人名的转入转出条数
@@ -148,7 +148,7 @@ export const queryGraphFirst = (custom, number) =>{return axios.get(`/back/trans
 // 上下线分析二层s
 export const queryGraphSecond = (custom) =>{return axios.get(`/back/transferrecord/queryGraphSecond?custom=${custom}`)}
 // 异常资金流
-export const exceptionRecord = (minFee, maxFee) =>{return axios.get(`/back/transferrecord/exceptionRecord?minFee=${minFee}&maxFee=${maxFee}`)}
+export const exceptionRecord = params =>{return axios.get('/back/transferrecord/exceptionRecord',{ params: params })}
 // 重点人关系
 export const queryGraph = (query) =>{return axios.get('/back/transferrecord/queryGraph?custom='+query)}
 //登录

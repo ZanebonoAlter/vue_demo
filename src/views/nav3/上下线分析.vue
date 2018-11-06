@@ -41,7 +41,7 @@
               </el-switch>
             </el-form-item>
             <el-form-item label="请选择节点数量" v-if="!isTwo">
-              <el-select v-model="filters.number" placeholder="请选择人员数量">
+              <el-select v-model="filters.number" placeholder="请选择人员数量" >
                 <el-option
                   v-for="item in options"
                   :key="item"
@@ -135,10 +135,10 @@
         person: {
           pName: ''
         },
-        options: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+        options: [ 2, 3, 4, 5, 6, 7, 8, 9],
         checkList: [],
         filters: {
-          number: 1,
+          number: 2,
           count: 0,
           fee: 0
         },
@@ -335,11 +335,18 @@
     },
     methods: {
       init_list () {
+          const load = this.$loading({
+              lock: true,
+              text: 'Loading',
+              spinner: 'el-icon-loading',
+              background: 'rgba(0, 0, 0, 0.7)'
+          });
         getData.person_keyPerson().then(res => {
           this.checkList = res.data.list;
           for (var i = 0; i < this.checkList.length; i++) {
             this.checkedList[i] = this.checkList[i].pName;
           }
+        load.close();
         })
       },
       addMainPerson (formName) {
@@ -389,12 +396,19 @@
           number: this.filters.number
         }
         this.$session.set('listStorage', {checkList: this.checkList, number: this.filters.number, isTwo: this.isTwo})
+          const load = this.$loading({
+              lock: true,
+              text: 'Loading',
+              spinner: 'el-icon-loading',
+              background: 'rgba(0, 0, 0, 0.7)'
+          });
         if (!this.isTwo) {
           //  一层
           getData.queryGraphFirst(params.custom, params.number).then((res) => {
             console.log('queryGraphFirst', res)
             this.first_list = res.data.first_list;
             this.drawChart(res)
+              load.close();
           })
         } else {
           //  二层
@@ -402,6 +416,7 @@
             console.log('queryGraphSecond', res)
             this.first_list = res.data.first_list;
             this.drawChart(res)
+              load.close();
           })
         }
       },
@@ -417,8 +432,7 @@
           this.option.series[0].links = res.data.graph.links;
           var all = this;
           myChart.on('click', function (params) {
-            console.log(params);
-            console.log(all)
+
             //window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.data.label.normal.formatter));
             if (params.dataType == "node") {
               all.$confirm('请确认接下来的操作', '确认信息', {
@@ -435,7 +449,12 @@
                     level = str.split(",")[0];
                     console.log(level)
                   }
-
+                    const load = all.$loading({
+                        lock: true,
+                        text: 'Loading',
+                        spinner: 'el-icon-loading',
+                        background: 'rgba(0, 0, 0, 0.7)'
+                    });
                   getData.Extend_Graph(params.data.name, level).then(res => {
                     for (var i = 0; i < res.data.graph.data.length; i++) {
                       var flag = 0;
@@ -453,6 +472,7 @@
                     }
                     console.log(all.option);
                     myChart.setOption(all.option, true);
+                    load.close();
                   })
                   params.data.extend = 1
                 } else {

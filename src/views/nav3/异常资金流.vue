@@ -54,6 +54,11 @@
       </el-table-column>
     </el-table>
     <!--工具条-->
+    <el-col :span="24" class="toolbar" >
+      <el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="pageSize"
+                     :total="total" style="float:right;">
+      </el-pagination>
+    </el-col>
   </section>
 </template>
 
@@ -75,8 +80,13 @@
       return {
         filters: {
           minFee: '',
-          maxFee: ''
+          maxFee: '',
+            name: '',
+            cname: ''
         },
+          total: 1,
+          pageIndex: 1,
+          pageSize: 10,
         list: [],
         formRules: {
           minFee: [
@@ -104,24 +114,42 @@
     },
     methods: {
       fetchData () {
+          var params={
+              minFee:this.filters.minFee,
+              maxFee:this.filters.maxFee,
+              pageIndex:this.pageIndex,
+              pageSize:this.pageSize
+          }
         this.$refs['form'].validate((valid) => {
           if (valid) {
-            getData.exceptionRecord(this.filters.minFee, this.filters.maxFee).then((res) => {
+//              const load = this.$loading({
+//                  lock: true,
+//                  text: 'Loading',
+//                  spinner: 'el-icon-loading',
+//                  background: 'rgba(0, 0, 0, 0.7)'
+//              });
+            getData.exceptionRecord(params).then((res) => {
               console.log('res', res)
               this.list = res.data.list;
+              this.total=res.data.count;
               if (this.list) {
                 for (var i = 0; i < this.list.length; i++) {
                   this.list[i].transferRecordCreateTime = format(this.list[i].transferRecordCreateTime);
                   this.list[i].transferRecordPayTime = format(this.list[i].transferRecordPayTime);
                 }
               }
+//                load.close();
             })
           } else {
             console.log('error submit!!');
             return false;
           }
         })
-      }
+      },
+        handleCurrentChange (val) {
+            this.pageIndex = val;
+            this.fetchData();
+        },
     }
   }
 

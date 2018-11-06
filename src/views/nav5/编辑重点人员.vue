@@ -3,7 +3,7 @@
     <el-col>
       <el-form :model="addForm" label-width="240px" ref="addForm">
         <el-form-item label="身份证号:" prop="name">
-          <el-input v-model="addForm.pIdentity" auto-complete="off"></el-input>
+          <el-input v-model="addForm.pIdentity" ></el-input>
         </el-form-item>
         <el-form-item label="户籍:" prop="price">
           <el-input v-model="addForm.pResidence" type="textarea"></el-input>
@@ -73,15 +73,15 @@
             <!--placeholder="选择日期时间">-->
           <!--</el-date-picker>-->
         <!--</el-form-item>-->
-        <!--<el-form-item label="住址信息:" prop="stock">-->
-          <!--<el-input v-model="addForm.pAddressInfo" type="textarea"></el-input>-->
-        <!--</el-form-item>-->
-        <!--<el-form-item label="活动痕迹:" prop="stock">-->
-          <!--<el-input v-model="addForm.pTrajectoryInfo" type="textarea"></el-input>-->
-        <!--</el-form-item>-->
-        <!--<el-form-item label="证据指向:" prop="stock">-->
-          <!--<el-input v-model="addForm.pEvidence" type="textarea"></el-input>-->
-        <!--</el-form-item>-->
+        <el-form-item label="住址信息:" prop="stock">
+          <el-input v-model="addForm.pAddressInfo" type="textarea"></el-input>
+        </el-form-item>
+        <el-form-item label="活动痕迹:" prop="stock">
+          <el-input v-model="addForm.pTrajectoryInfo" type="textarea"></el-input>
+        </el-form-item>
+        <el-form-item label="证据指向:" prop="stock">
+          <el-input v-model="addForm.pEvidence" type="textarea"></el-input>
+        </el-form-item>
       </el-form>
       <div class="footer">
         <el-button type="primary" @click="update">提交</el-button>
@@ -110,18 +110,18 @@
           pQq: '',
           pZhifubao: '',
           pRemark: '',
-          pYuandingGrade: '',
-          pYuandingUid: '',
-          pYuandingName: '',
-          pYuandingFriendNum: -1,
-          pYuandingAlbumNum: -1,
-          pYuandingPostNum: -1,
-          pYuandingTopicNum: -1,
-          pYuandingRegistIp: '',
-          pYuandingRegistTime: '',
-          pYuandingLoginLastIp: '',
-          pYuandingLoginLastAddress: '',
-          pYuandingLoginLastTime: '',
+//          pYuandingGrade: '',
+//          pYuandingUid: '',
+//          pYuandingName: '',
+//          pYuandingFriendNum: -1,
+//          pYuandingAlbumNum: -1,
+//          pYuandingPostNum: -1,
+//          pYuandingTopicNum: -1,
+//          pYuandingRegistIp: '',
+//          pYuandingRegistTime: '',
+//          pYuandingLoginLastIp: '',
+//          pYuandingLoginLastAddress: '',
+//          pYuandingLoginLastTime: '',
           pAddressInfo: '',
           pTrajectoryInfo: '',
           pEvidence: ''
@@ -133,6 +133,7 @@
     },
     methods: {
       update () {
+          console.log(this.addForm)
         getData.update_person(this.addForm).then(res => {
           if (res.data.code == 1) {
             this.$message.success('success submit!');

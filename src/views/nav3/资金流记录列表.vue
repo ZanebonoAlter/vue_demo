@@ -124,8 +124,13 @@
           beginDate: this.filters.date[0] ? this.filters.date[0] : undefined,
           endDate: this.filters.date[1] ? this.filters.date[1] : undefined
         }
+          const load = this.$loading({
+              lock: true,
+              text: 'Loading',
+//              spinner: 'el-icon-loading',
+//              background: 'rgba(0, 0, 0, 0.7)'
+          });
         getData.transferList_All(this.pageIndex, this.pageSize, {...date}).then(res => {
-          console.log(res);
           this.list = res.data.list;
           this.money.in = res.data.in;
           this.money.out = res.data.out
@@ -136,6 +141,7 @@
             }
           }
           this.total = res.data.count;
+          load.close();
         })
       },
       search () {
@@ -145,9 +151,15 @@
           beginDate: this.filters.date[0] ? this.filters.date[0] : undefined,
           endDate: this.filters.date[1] ? this.filters.date[1] : undefined
         }
+          const load = this.$loading({
+              lock: true,
+              text: 'Loading',
+//              spinner: 'el-icon-loading',
+//              background: 'rgba(0, 0, 0, 0.7)'
+          });
         if (this.searchName == "") {
           getData.transferList_All(this.pageIndex, this.pageSize, {...date}).then(res => {
-            console.log(res);
+
             this.list = res.data.list;
             this.money.in = res.data.in;
             this.money.out = res.data.out
@@ -158,6 +170,7 @@
               }
             }
             this.total = res.data.count;
+            load.close();
           })
         } else {
           getData.transferList_Search(this.pageIndex, this.pageSize, this.searchName,{...date}).then(res => {
@@ -172,6 +185,7 @@
               }
             }
             this.total = res.data.count;
+            load.close();
           })
         }
       },
@@ -180,6 +194,12 @@
           beginDate: this.filters.date[0] ? this.filters.date[0] : undefined,
           endDate: this.filters.date[1] ? this.filters.date[1] : undefined
         }
+          const load = this.$loading({
+              lock: true,
+              text: 'Loading',
+//              spinner: 'el-icon-loading',
+//              background: 'rgba(0, 0, 0, 0.7)'
+          });
         if (this.searchName == "") {
           getData.transferList_All(this.pageIndex, this.pageSize, {...date}).then(res => {
             console.log(res);
@@ -193,6 +213,7 @@
               }
             }
             this.total = res.data.count;
+            load.close();
           })
         } else {
           getData.transferList_Search(this.pageIndex, this.pageSize, this.searchName, {...date}).then(res => {
@@ -207,6 +228,7 @@
               }
             }
             this.total = res.data.count;
+            load.close();
           })
         }
       },

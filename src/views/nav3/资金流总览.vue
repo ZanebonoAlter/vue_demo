@@ -293,16 +293,20 @@
           var myChart = echarts.init(dom);
           myChart.showLoading();
           this.$session.set('crashStorage', {checkList: this.checkList})
+            const load = this.$loading({
+                lock: true,
+                text: 'Loading',
+                spinner: 'el-icon-loading',
+                background: 'rgba(0, 0, 0, 0.7)'
+            });
           getData.queryGraph(this.checkedList).then(res => {
             this.option.series[0].data = res.data.graph.data;
             this.option.series[0].links = res.data.graph.links;
-            console.log(this.option)
+            load.close();
             myChart.setOption(this.option, true);
             myChart.hideLoading();
             var all = this;
             myChart.on('click', function (params) {
-              console.log(params);
-              console.log(all)
               //window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.data.label.normal.formatter));
               if (params.dataType == "node") {
                 all.$confirm('请确认接下来的操作', '确认信息', {
@@ -319,7 +323,12 @@
                       level = str.split(",")[0];
                       console.log(level)
                     }
-
+                      const load = all.$loading({
+                          lock: true,
+                          text: 'Loading',
+                          spinner: 'el-icon-loading',
+                          background: 'rgba(0, 0, 0, 0.7)'
+                      });
                     getData.Extend_Graph(params.data.name, level).then(res => {
                       for (var i = 0; i < res.data.graph.data.length; i++) {
                         var flag = 0;
@@ -335,8 +344,8 @@
                       for (var i = 0; i < res.data.graph.links.length; i++) {
                         all.option.series[0].links.push(res.data.graph.links[i])
                       }
-                      console.log(all.option);
                       myChart.setOption(all.option, true);
+                      load.close();
                     })
                     params.data.extend = 1
                   } else {

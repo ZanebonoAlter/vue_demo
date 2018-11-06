@@ -13,12 +13,10 @@
               </el-switch>
             </el-form-item>
             <el-form-item>
-              转账记录数量>=&nbsp
-              <el-input-number v-model="filters.count" placeholder="记录数量"></el-input-number>
+              <el-input-number v-model="filters.count" placeholder="记录数量" ></el-input-number>
             </el-form-item>
             <el-form-item>
-              每笔金额大小>=&nbsp
-              <el-input-number v-model="filters.fee" placeholder="金额数量"></el-input-number>
+              <el-input-number v-model="filters.fee" placeholder="金额数量" ></el-input-number>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="init">查询</el-button>
@@ -99,8 +97,8 @@
         showChart: false,
         activeNames: '1',
         filters: {
-          count: 0,
-          fee: 0
+          count: 100,
+          fee: 5000
         },
         node: [],
         first_list: [],
@@ -308,6 +306,12 @@
           var dom = document.getElementById("container");
           var myChart = echarts.init(dom);
           myChart.showLoading();
+            const load = this.$loading({
+                lock: true,
+                text: 'Loading',
+                spinner: 'el-icon-loading',
+                background: 'rgba(0, 0, 0, 0.7)'
+            });
           if (!this.isTwo) {
             getData.one_person_List(params).then(res => {
               this.node = res.data.node;
@@ -315,6 +319,7 @@
               this.option.series[0].data = res.data.graph.data;
               this.option.series[0].links = res.data.graph.links;
               myChart.setOption(this.option, true);
+              load.close();
             })
           } else {
             getData.two_person_List(params).then(res => {
@@ -324,13 +329,12 @@
               this.option.series[0].data = res.data.graph.data;
               this.option.series[0].links = res.data.graph.links;
               myChart.setOption(this.option, true);
+                load.close();
             })
           }
           myChart.hideLoading();
           var all = this;
           myChart.on('click', function (params) {
-            console.log(params);
-            console.log(all)
             //window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.data.label.normal.formatter));
             if (params.dataType == "node") {
               all.$confirm('请确认接下来的操作', '确认信息', {
@@ -347,7 +351,12 @@
                     level = str.split(",")[0];
                     console.log(level)
                   }
-
+                    const load = all.$loading({
+                        lock: true,
+                        text: 'Loading',
+                        spinner: 'el-icon-loading',
+                        background: 'rgba(0, 0, 0, 0.7)'
+                    });
                   getData.Extend_Graph(params.data.name, level).then(res => {
                     for (var i = 0; i < res.data.graph.data.length; i++) {
                       var flag = 0;
@@ -365,6 +374,7 @@
                     }
                     console.log(all.option);
                     myChart.setOption(all.option, true);
+                    load.close();
                   })
                   params.data.extend = 1
                 } else {

@@ -11,10 +11,14 @@
         <el-col  :span="5">
           <el-form-item>
             <el-upload
+              drag
               class="upload-box"
               action="/back/transferrecord/upload"
+              multiple
               :on-success="successUpload">
-              <el-button size="medium" type="primary">点击上传Excel文件</el-button>
+              <!--<el-button size="medium" type="primary">点击上传Excel文件</el-button>-->
+              <i class="el-icon-upload"></i>
+              <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
             </el-upload>
           </el-form-item>
         </el-col>
@@ -24,7 +28,8 @@
     <div class="desc-wrap">
       注意：
       <p>1.文件命名：使用“XX转账记录”(XX这里指的是姓名)</p>
-      <p>1.文件格式：使用EXCEL表格(.xlsx后缀名文件)</p>
+      <p>2.文件格式：使用EXCEL表格(.xlsx后缀名文件)</p>
+      <p>3.注意批量上传的文件大小！(默认50MB)</p>
     </div>
     <!--<div class="footer">-->
     <!--<el-button type="primary" @click="upload">提交</el-button>-->

@@ -73,14 +73,25 @@
         sels: [],//列表选中列
         searchName: '',
         filter_key: false,
-        hidden: false
+        hidden: false,
+          first:1
       }
     },
     mounted () {
+
       this.init();
+
     },
     methods: {
       init () {
+          var load=null;
+          if(this.first==1)
+               load = this.$loading({
+                  lock: true,
+                  text: 'Loading',
+                  spinner: 'el-icon-loading',
+                  background: 'rgba(0, 0, 0, 0.7)'
+              });
         var params = {
           pageIndex: this.pageIndex,
           pageSize: this.pageSize,
@@ -93,6 +104,10 @@
         getData.people_List(params).then(res => {
           this.list = res.data.list;
           this.total = res.data.count;
+          if (this.first==1){
+              load.close();
+              this.first=0;
+          }
         })
       },
       handleCurrentChange (val) {

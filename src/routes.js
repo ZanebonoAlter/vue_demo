@@ -164,7 +164,7 @@ let routes = [
         path: '/duplicatePerson',
         component: duplicatePerson,
         meta: {
-          title: '编辑重点人员'
+          title: '支付宝重名管理'
         },
         permission: 'duplicatePerson',
         children: [
@@ -183,15 +183,6 @@ let routes = [
             hidden: true
           }
         ]
-      },
-      {
-        path: '/keyPersonEdit',
-        component: keyPersonEdit,
-        meta: {
-          title: '编辑重点人员'
-        },
-        permission: 'keyPersonEdit',
-        hidden: true
       }
     ]
   },

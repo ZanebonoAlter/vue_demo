@@ -78,15 +78,15 @@
               <!--placeholder="选择日期时间">-->
             <!--</el-date-picker>-->
           <!--</el-form-item>-->
-          <!--<el-form-item label="住址信息:" prop="stock">-->
-            <!--<el-input v-model="addForm.pAddressInfo" type="textarea"></el-input>-->
-          <!--</el-form-item>-->
-          <!--<el-form-item label="活动痕迹:" prop="stock">-->
-            <!--<el-input v-model="addForm.pTrajectoryInfo" type="textarea"></el-input>-->
-          <!--</el-form-item>-->
-          <!--<el-form-item label="证据指向:" prop="stock">-->
-            <!--<el-input v-model="addForm.pEvidence" type="textarea"></el-input>-->
-          <!--</el-form-item>-->
+          <el-form-item label="住址信息:" prop="stock">
+            <el-input v-model="addForm.pAddressInfo" type="textarea"></el-input>
+          </el-form-item>
+          <el-form-item label="活动痕迹:" prop="stock">
+            <el-input v-model="addForm.pTrajectoryInfo" type="textarea"></el-input>
+          </el-form-item>
+          <el-form-item label="证据指向:" prop="stock">
+            <el-input v-model="addForm.pEvidence" type="textarea"></el-input>
+          </el-form-item>
         </el-form>
         <div class="footer">
           <el-button type="primary" @click="update">提交</el-button>
