@@ -35,7 +35,11 @@ import keyPerson from './views/nav5/重点人管理.vue'
 import peopleList from './views/nav5/人员列表.vue'
 import keyPersonEdit from './views/nav5/编辑重点人员.vue'
 import duplicatePerson from './views/nav5/支付宝重名管理.vue'
+
+import neo4j from './views/neo4j/自由挖掘.vue'
+
 import VueRouter from "vue-router";
+
 
 let routes = [
   {
@@ -365,7 +369,16 @@ let routes = [
         },
         permission: 'abnormalCapital',
         hidden: false
-      }
+      },
+        {
+            path: '/neo4j',
+            component: neo4j,
+            meta: {
+                title: '自由挖掘'
+            },
+            permission: 'neo4j',
+            hidden: false
+        }
     ]
   },
   {
