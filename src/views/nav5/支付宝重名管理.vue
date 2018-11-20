@@ -16,6 +16,13 @@
       <el-table border :data="list" highlight-current-row style="width: 100%;">
         <el-table-column align="center" prop="pName" label="姓名">
         </el-table-column>
+        <el-table-column align="center" prop="pIds" label="支付宝Id">
+          <template slot-scope="scope">
+            <li class="box-item" v-for="(value, key) in scope.row.pIds">
+              <div><span class="left-label">支付宝Id：</span><span class="label-span" v-for="val in value">{{ val }}</span></div>
+            </li>
+          </template>
+        </el-table-column>
         <el-table-column align="center" label="操作">
           <template slot-scope="scope">
             <el-button type="primary" size="small"

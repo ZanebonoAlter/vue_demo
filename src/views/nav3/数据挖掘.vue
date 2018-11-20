@@ -13,9 +13,11 @@
               </el-switch>
             </el-form-item>
             <el-form-item>
+              转账记录数量>=
               <el-input-number v-model="filters.count" placeholder="记录数量" ></el-input-number>
             </el-form-item>
             <el-form-item>
+              转账金额>=
               <el-input-number v-model="filters.fee" placeholder="金额数量" ></el-input-number>
             </el-form-item>
             <el-form-item>
