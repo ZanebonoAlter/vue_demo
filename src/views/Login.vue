@@ -54,6 +54,12 @@
         checked: true
       };
     },
+      mounted(){
+          let sign = this.$route.query.sign;
+          // console.log(temp);
+          if(sign==0)
+              this.$router.push({path: '/keyPerson'});
+      },
     methods: {
       handleSubmit2 (ev) {
         this.$refs.ruleForm2.validate((valid) => {
