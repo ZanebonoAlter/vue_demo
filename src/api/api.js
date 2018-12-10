@@ -155,3 +155,5 @@ export const queryGraph = (query) =>{return axios.get('/back/transferrecord/quer
 export const Login = (account,password) =>{return axios.post('/back/user/login',`account=${account}&password=${password}`)}
 //获取扩展节点信息
 export const Extend_Graph = (name,level) =>{return axios.get('/back/transferrecord/onePersonGraph?name='+name+"&level="+level)}
+//自动登录
+export const Auto_Login = () =>{return axios.post('/back/user/auto_login')}

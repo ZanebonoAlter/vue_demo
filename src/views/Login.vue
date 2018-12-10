@@ -55,10 +55,17 @@
       };
     },
       mounted(){
-          let sign = this.$route.query.sign;
-          // console.log(temp);
-          if(sign==0)
-              this.$router.push({path: '/keyPerson'});
+          // let sign = this.$route.query.sign;
+          // // console.log(temp);
+          // if(sign==0)
+          //     this.$router.push({path: '/keyPerson'});
+          getData.Auto_Login().then(res=>{
+                if(res.data.sign==1){
+
+                }else if(res.data.sign==0){
+                    this.$router.push({path: '/keyPerson'});
+                }
+              })
       },
     methods: {
       handleSubmit2 (ev) {
