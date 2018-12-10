@@ -396,6 +396,7 @@
           number: this.filters.number
         }
         this.$session.set('listStorage', {checkList: this.checkList, number: this.filters.number, isTwo: this.isTwo})
+          var old_time = new Date().getTime();
           const load = this.$loading({
               lock: true,
               text: 'Loading',
@@ -416,6 +417,8 @@
             console.log('queryGraphSecond', res)
             this.first_list = res.data.first_list;
             this.drawChart(res)
+              var new_time = new Date().getTime()
+              console.log(new_time-old_time)
               load.close();
           })
         }
