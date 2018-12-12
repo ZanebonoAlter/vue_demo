@@ -71,6 +71,7 @@
           animationEasingUpdate: 'quinticInOut',
           series: [
             {
+                draggable:true,
               tooltip: {},
               name: 'Person',
               type: 'graph',
@@ -81,7 +82,7 @@
               force: {
                 initLayout: 'circular',
                 repulsion: 10000,
-                layoutAnimation: false
+                layoutAnimation: true
               },
               focusNodeAdjacency: true,
               itemStyle: {

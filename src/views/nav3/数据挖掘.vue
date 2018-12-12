@@ -135,10 +135,11 @@
 //              circular: {
 //                rotateLabel: true
 //              },
+                  draggable:true,
               force: {
                 initLayout: 'circular',
                 repulsion: 10000,
-                layoutAnimation: false
+                layoutAnimation: true
               },
               focusNodeAdjacency: true,
               itemStyle: {
