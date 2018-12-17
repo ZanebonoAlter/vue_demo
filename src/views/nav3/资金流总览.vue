@@ -369,6 +369,13 @@
 //                            this.$router.push({path:'/personDetail',query:{type:"edge",name1:params.data.source,name2:params.data.target}})
               }
             })
+              myChart.on('mouseup',function(params){
+                  var option=myChart.getOption();
+                  option.series[0].data[params.dataIndex].x=params.event.offsetX;
+                  option.series[0].data[params.dataIndex].y=params.event.offsetY;
+                  option.series[0].data[params.dataIndex].fixed=true;
+                  myChart.setOption(option);
+              });
           })
         })
 
